@@ -71,6 +71,15 @@
                         flex-flow: row nowrap;
                         justify-content: center;
                         align-items: center;
+                        position: relative;
+                        span {
+                            position: absolute;
+                            opacity: 0;
+                            color: #fff;
+                            font-size: 0.7rem;
+                            padding: 0 5px;
+                            // transition: all 1s ease;
+                        }
                         &.twitter {
                             background-color: #55acee;
                             border: 1px solid #fff;

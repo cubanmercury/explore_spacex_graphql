@@ -1,7 +1,8 @@
-import styles from "./about.module.scss";
-import Image from "next/image";
-import { useQuery } from '@apollo/react-hooks';
+import styles from "./about.module.scss"
+import Image from "next/image"
+import { useQuery } from '@apollo/react-hooks'
 import COMPANY_INFO from '../../../graphql/companyInfo.query'
+import { gsap } from 'gsap'
 
 const About = () => {
     const { data, loading, error } = useQuery(COMPANY_INFO)
@@ -12,6 +13,21 @@ const About = () => {
         return <span>Error Occured: {JSON.stringify(error)}</span>
     }
     console.log("about data: ", data)
+
+    const handleMouseEnter = e => {
+        gsap.to(e.currentTarget, {width: "50%", duration: 0.2 })
+        gsap.to(e.currentTarget.firstChild, {x: "-2.7rem", duration: 0.4 })
+        if (e.currentTarget.className.includes("elontwitter")) {
+            gsap.fromTo(e.currentTarget.lastChild, {x: 0}, {x: 15, duration: 0.2})
+        }
+        gsap.fromTo(e.currentTarget.lastChild, {opacity: 0},{ opacity: 1, duration: 0.5, ease: "slow" })
+    }
+
+    const handleMouseLeave = e => {
+        gsap.to(e.currentTarget, {width: "33%", duration: 0.2 })
+        gsap.to(e.currentTarget.firstChild, {x: 0, duration: 0.5})
+        gsap.fromTo(e.currentTarget.lastChild, {opacity: 1}, { opacity: 0, duration: 0.5})
+    }
 
     return (
         <div className={styles.aboutcontainer}>
@@ -61,14 +77,17 @@ const About = () => {
                     </div>
                     <div className={styles.links}>
                         <div className={styles.box}>
-                            <a href={data.company.links.twitter} className={`${styles.twitter} ${styles.link}`}>
+                            <a href={data.company.links.twitter} className={`${styles.twitter} ${styles.link}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                                     <Image src="/links/twitter_white_transparent.png" width="25" height="25" quality="100" />
+                                    <span>Twitter</span>
                             </a>
-                            <a href={data.company.links.elon_twitter} className={`${styles.elontwitter} ${styles.link}`}>
+                            <a href={data.company.links.elon_twitter} className={`${styles.elontwitter} ${styles.link}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                                     <Image src="/links/elon_icon.png" width="25" height="25" quality="100" />
+                                    <span>Elon's Mind</span>
                             </a>
-                            <a href={data.company.links.website} className={`${styles.website} ${styles.link}`}>
+                            <a href={data.company.links.website} className={`${styles.website} ${styles.link}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                                     <Image src="/links/spacex-icon.png" width="25" height="25" quality="100" />
+                                    <span>Website</span>
                             </a>
                         </div>
                     </div>
