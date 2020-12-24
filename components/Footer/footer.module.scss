@@ -1,0 +1,71 @@
+.footer {
+    width: 100%;
+    height: 25vh;
+    min-height: 270px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    border-top: 1px solid #a7a9ac;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: 4rem;
+
+    .footercontainer {
+        width: 70%;
+        height: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+
+        .links {
+            display: flex;
+            flex-flow: column nowrap;
+            width: 20%;
+
+            & a {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: flex-start;
+                align-items: center;
+                line-height: 2rem;
+                margin: 0.2rem 0;
+                &:hover {
+                    color: #005288;
+                }
+                .linkname {
+                    margin-left: 0.4rem;
+                }
+            }
+
+            .title {
+                text-decoration: underline;
+                font-size: 1.2rem;
+                line-height: 1.5rem;
+            }
+        }
+
+        .info {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+            width: 35%;
+            .herotext {
+                display: flex;
+                flex-flow: column nowrap;
+                text-align: right;
+                font-size: 2rem;
+            }
+
+            .tools {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: flex-end;
+                align-items: center;
+
+                .tool {
+                    margin: 0 0.5rem;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+.home {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    min-height: 100%;
+
+    .herocontainer {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - 8vh);
+
+        .herotext {
+            position: absolute;
+            z-index: 1;
+            font-size: 4rem;
+            font-weight: 900;
+            color: #a7a9ac;
+            width: calc(100% - 75%);
+            top: calc(100% - 85%);
+            left: calc(100% - 95%);
+            text-align: left;
+            text-shadow: 3px 4px #313335;
+        }
+
+        #chevron {
+            position: absolute;
+            z-index: 1;
+            top: calc(100vh - 20vh);
+            left: 50%;
+        }
+    }
+
+}

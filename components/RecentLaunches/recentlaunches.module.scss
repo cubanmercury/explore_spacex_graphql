@@ -1,0 +1,25 @@
+.launchList {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 0;
+}
+.launchListTitle {
+    text-align: center;
+    font-size: 3rem;
+    text-transform: capitalize;
+    color: #a7a9ac;
+}
+.launchCard {
+    list-style-type: none;
+    border: 1px solid #a7a9ac;
+    border-radius: 12px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 28%;
+    padding: 25px;
+    margin: 12px;
+    color: #a7a9ac;
+}

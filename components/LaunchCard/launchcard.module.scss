@@ -1,0 +1,21 @@
+.cardcontent {
+    height: 100%;
+
+    .launchNameTitle {
+        text-align: center;
+    }
+    .patchcontainer {
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .patch {
+            object-fit: contain;
+        }
+        .nopatch {
+            text-align: center;
+        }
+    }
+}
+
