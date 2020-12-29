@@ -1,0 +1,61 @@
+.switchcheckbox {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+
+    &:checked + .switchbutton {
+        transform: translateX(-280%);
+    }
+    &:checked ~ .off {
+        display: none !important;
+    }
+    &:checked ~ .on {
+        display: flex !important;
+    }
+}
+
+.switchlabel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    background: transparent;
+    border: 1px solid #0070f3;
+    border-radius: 100px;
+    position: relative;
+    transition: background-color .2s;
+
+    &:active {
+        .switchbutton {
+            width: 60px;
+        }
+    }
+
+    .switchbutton {
+        content: '';
+        position: absolute;
+        top: 2.5px;
+        right: 2px;
+        width: 25px;
+        height: 25px;
+        border-radius: 45px;
+        transition: all 0.5s;
+        background: #0070f3;
+        box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+    }
+
+    .on, .off {
+        position: absolute;
+        color: #ffffff;
+        font-size: 1rem;
+    }
+    .on {
+        display: none;
+        left: 35%;
+    }
+    .off {
+        right: 45%;
+    }
+}

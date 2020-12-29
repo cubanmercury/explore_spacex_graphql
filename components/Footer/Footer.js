@@ -11,7 +11,6 @@ const Footer = () => {
     if (error) {
         return <span>Error Occured: {JSON.stringify(error)}</span>
     }
-    console.log("about data: ", data)
     return (
         <div className={styles.footer}>
             <div className={styles.footercontainer}>

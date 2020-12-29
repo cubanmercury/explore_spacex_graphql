@@ -12,7 +12,6 @@ const About = () => {
     if (error) {
         return <span>Error Occured: {JSON.stringify(error)}</span>
     }
-    console.log("about data: ", data)
 
     const handleMouseEnter = e => {
         gsap.to(e.currentTarget, {width: "50%", duration: 0.2 })
