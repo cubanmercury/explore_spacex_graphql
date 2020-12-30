@@ -27,12 +27,6 @@
     position: relative;
     transition: background-color .2s;
 
-    &:active {
-        .switchbutton {
-            width: 60px;
-        }
-    }
-
     .switchbutton {
         content: '';
         position: absolute;

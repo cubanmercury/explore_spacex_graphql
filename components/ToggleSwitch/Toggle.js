@@ -1,7 +1,6 @@
 import styles from './toggle.module.scss'
 
 const Toggle = ({enabled, onStateChange, leftLabel, rightLabel}) => {
-    console.log("inside toggle: ", enabled)
     return (
         <>
             <label className={styles.switchlabel} htmlFor={`toggle-switch`}>

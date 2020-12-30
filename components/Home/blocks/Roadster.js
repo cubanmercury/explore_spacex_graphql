@@ -15,19 +15,22 @@ const Roadster = () => {
     const roadsterModal = useRef(null)
     const banner = useRef(null)
     const [metric, setMetric] = useState(true)
+    let bannerWidth;
+    useEffect(() => {
+        banner.current 
+            ? bannerWidth = banner.current.getBoundingClientRect().width/2 
+            : bannerWidth = "550px"
+    })
 
     const { data, loading, error } = useQuery(ROADSTER)
     if (error) return <span>Error: {JSON.stringify(error)}</span>
     if (loading) return <span></span>
     const video = "/dynamic/nebula.mp4";
 
-    
     console.log("roadster: ", data)
 
     const handleClick = e => {
         e.preventDefault()
-        const bannerWidth = banner.current.scrollWidth/2
-        console.log("handleClick: ", bannerWidth)
         let tl = gsap.timeline()
         tl.fromTo(roadsterImg.current, {x: 0}, {x: bannerWidth, duration: 1.5})
         tl.fromTo(details.current, {opacity: 1, x: 0}, {opacity: 0, x: -500, duration: 1.5}, 0.25)
@@ -37,8 +40,6 @@ const Roadster = () => {
     }
 
     const handleClose = () => {
-        const bannerWidth = banner.current.scrollWidth/2
-        console.log("handleClose: ", bannerWidth)
         let tl = gsap.timeline()
         tl.fromTo(roadsterModal.current, {opacity: 1}, {opacity: 0, duration: 1})
         tl.fromTo(findOut.current, {opacity: 0, y: -150}, {opacity: 1, y: 0, duration: 1.5}, 0.25)
@@ -53,7 +54,6 @@ const Roadster = () => {
     }
 
     const ToggleUnits = () => {
-        console.log("metric value: ", metric)
         return (
             <Toggle enabled={metric} onStateChange={() => setMetric(!metric)} leftLabel="metric" rightLabel="imp" />
         )
@@ -82,13 +82,15 @@ const Roadster = () => {
         return (
             <div className={styles.modalcontent}>
                 <span className={styles.close} onClick={handleClose}><Image src="/cancel.svg" width="20" height="20" /></span>
-                <span>Days since Launch: {roadster.period_days}</span>
-                <RenderUnits />
-                <span>
-                    <a href={roadster.wikipedia}>
-                        Read more
-                    </a>
-                </span>
+                <div className={styles.stats}>
+                    <span>Days since Launch: {roadster.period_days}</span>
+                    <RenderUnits />
+                    <span>
+                        <a href={roadster.wikipedia}>
+                            Read more
+                        </a>
+                    </span>
+                </div>
                 <span className={styles.toggle}>
                     <ToggleUnits />
                 </span>
