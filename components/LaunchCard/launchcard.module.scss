@@ -1,5 +1,14 @@
 .cardcontent {
     height: 100%;
+    width: 100%;
+    position: relative;
+
+    .close {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        display: flex;
+    }
 
     .launchNameTitle {
         text-align: center;

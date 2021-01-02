@@ -1,4 +1,5 @@
 .launchList {
+    position: relative;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -11,6 +12,7 @@
     color: #a7a9ac;
 }
 .launchCard {
+    position: relative;
     list-style-type: none;
     border: 1px solid #a7a9ac;
     border-radius: 12px;
@@ -22,4 +24,7 @@
     padding: 25px;
     margin: 12px;
     color: #a7a9ac;
+    cursor: pointer;
+    background: #181a1b;
+    z-index: 1;
 }
