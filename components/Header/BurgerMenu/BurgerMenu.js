@@ -1,21 +1,13 @@
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { gsap } from "gsap";
+import { useEffect, useRef } from 'react'
+import Image from 'next/image'
+import { gsap } from "gsap"
 
-import styles from './burgermenu.module.scss';
+import styles from './burgermenu.module.scss'
 
 const BurgerMenu = ({menu, toggleMenu}) => {
-    // Called on every component repaint (eg. after state updates)
+    const burgerMenu = useRef(null)
     useEffect(() => {
-        const burgerMenuElem = document.getElementById('burger-menu');
-        if (menu === true){
-            burgerMenuElem.style.transform = "rotate(90deg)";
-            gsap.to(".rolldown", {y:262, duration: 0.25, ease: "none"});
-        } 
-        else{
-            burgerMenuElem.style.transform = "rotate(0deg)";
-            gsap.to(".rolldown", {y:0, duration: 0.5, ease: "none"});
-        } 
+        menu ? gsap.fromTo(burgerMenu.current,{rotate: 0}, {rotate: 90, duration: 0.5}) : gsap.fromTo(burgerMenu.current,{rotate: 90}, {rotate: 0, duration: 0.5})
     }, [menu]);
 
     const handleClick = (event) => {
@@ -26,7 +18,7 @@ const BurgerMenu = ({menu, toggleMenu}) => {
 
     return (
         <>
-            <a id="burger-menu" href="#" onClick={handleClick} className={styles.burgerMenu}>
+            <a id="burger-menu" href="#" ref={burgerMenu} onClick={handleClick} className={styles.burgerMenu}>
                 <Image src="/menu.svg" width="40" height="64" />
             </a>
         </>

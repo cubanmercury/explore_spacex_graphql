@@ -3,12 +3,17 @@ import { useRouter } from 'next/router'
 import styles from './Dropdown.module.scss'
 
 
-const Dropdown = ({openState, changeOpenState, className}) => {
+const Dropdown = ({openState, changeOpenState, className, setDropdownHeight}) => {
     const router = useRouter();
     const wrapperRef = useRef(null);
 
+    useEffect(() => {
+        setDropdownHeight(wrapperRef.current.getBoundingClientRect().height)
+    }, [])
+
 
     const useOutsideEvent = (ref, state) => {
+        // Handling close of dropdown on click outside of dropdown
         useEffect(() => {
             const handleClickOutside = (event) => {
                 if (state == true) {

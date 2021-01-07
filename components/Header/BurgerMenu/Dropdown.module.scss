@@ -1,6 +1,6 @@
 .menuDropdown {
     position: absolute;
-    top: -11rem;
+    bottom: 0;
     left: 0;
     height: 16.5rem;
     color: #a7a9ac;
@@ -20,11 +20,15 @@
         padding: 0;
         margin-top: 0;
         margin-bottom: 0;
+        display: flex;
+        flex-flow: column nowrap;
+        flex-grow: 1;
 
         li {
             padding: 1rem 2rem;
             text-align: center;
             overflow: hidden;
+            flex-grow: 1;
 
             &:nth-last-of-type(1) {
                 border-bottom: none;
