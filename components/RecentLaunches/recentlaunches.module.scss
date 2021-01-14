@@ -11,20 +11,3 @@
     text-transform: capitalize;
     color: #a7a9ac;
 }
-.launchCard {
-    position: relative;
-    list-style-type: none;
-    border: 1px solid #a7a9ac;
-    border-radius: 12px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    width: 28%;
-    padding: 25px;
-    margin: 12px;
-    color: #a7a9ac;
-    cursor: pointer;
-    background: #181a1b;
-    z-index: 1;
-}

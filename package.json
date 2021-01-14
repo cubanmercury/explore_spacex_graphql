@@ -19,6 +19,7 @@
     "next-with-apollo": "^5.1.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-image-gallery": "^1.0.8",
     "react-onclickoutside": "^6.9.0",
     "sass": "^1.29.0"
   }
