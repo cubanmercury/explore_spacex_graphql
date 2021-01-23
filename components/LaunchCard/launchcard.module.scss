@@ -44,8 +44,14 @@
             .patch {
                 object-fit: contain;
             }
-            .nopatch {
-                text-align: center;
+            .nopatchcontainer {
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: center;
+                align-items: center;
+                .nopatch {
+                    text-align: center;
+                }
             }
         }
         .gallery {

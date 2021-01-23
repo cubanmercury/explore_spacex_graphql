@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'
 
 const LAUNCHES_QUERY = gql`
 query launchesPast {
@@ -25,9 +25,10 @@ query launchesPast {
       ships {
         image
         name
+        url
       }
     }
   }
 `
 
-export default LAUNCHES_QUERY;
+export default LAUNCHES_QUERY

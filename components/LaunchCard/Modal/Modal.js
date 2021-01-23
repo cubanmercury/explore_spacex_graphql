@@ -2,11 +2,14 @@ import styles from "./modal.module.scss"
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { gsap } from "gsap";
+import ReactPlayer from 'react-player/youtube'
+
 import ImageGallery from 'react-image-gallery'
+import Toggle from '../../ToggleSwitch/Toggle'
 
 
 const Modal = ({missionPatch, launch, setModal, close, modal, modalWidth, modalHeight}) => {
-    const [fullscreen, setFullscreen] = useState(false)
+    const [mediaControlToPics, setMediaControlToPics] = useState(true)
     const modalContainer = useRef(null)
     const badge = useRef(null)
     const galleryItem = useRef(null)
@@ -24,44 +27,80 @@ const Modal = ({missionPatch, launch, setModal, close, modal, modalWidth, modalH
 
     useEffect(() => {
         if (modal === true) {
-            gsap.set(galleryItem.current, {height: modalHeight, maxHeight: modalHeight})
             gsap.set(modalContainer.current, {zIndex: "98", display: "flex"})
             const tl = gsap.timeline()
             tl.fromTo(modalContainer.current, {width: modalWidth, height: modalHeight, opacity: 0, position: "relative"}, {width: modalWidth*3, height: modalHeight*2, opacity: 1,position: "fixed", duration: 0.5})
+
+            if (launch.links.video_link === null) {
+                setMediaControlToPics(true)
+            } else if (launch.links.flickr_images.length <= 0 && launch.links.video_link.length >= 2 && mediaControlToPics === true) {
+                setMediaControlToPics(false)
+            }
         }
     }, [])
 
     useEffect(() => {
-        for (const key in launch.links.flickr_images) {
+        if (launch.links.flickr_images.length <= 0) {
             const obj = {
-                original: launch.links.flickr_images[key],
-                thumbnail: launch.links.flickr_images[key]
+                original: '/image.svg',
+                thumbnail: '/image.svg'
             }
             images.push(obj)
+        } else {
+            for (const key in launch.links.flickr_images) {
+                const obj = {
+                    original: launch.links.flickr_images[key],
+                    thumbnail: launch.links.flickr_images[key]
+                }
+                images.push(obj)
+            }
         }
-        if (fullscreen) {
-            let fullscreenGallery = document.getElementsByClassName('fullscreen-modal')[0]
-            gsap.set(fullscreenGallery, {minHeight: "100vh", maxHeight: "50vh"})
-        } 
-        else {
-            let fullscreenGallery = document.getElementsByClassName('image-gallery')
-            gsap.set(fullscreenGallery, {minHeight: "", maxHeight: ""})
-        }
+        gsap.set(galleryItem.current, {height: modalHeight, maxHeight: modalHeight})
     })
 
     const handleFullScreen = bool => {
-        setFullscreen(bool)
+        let fullscreenGallery = document.getElementsByClassName('image-gallery')
+        if (bool) {
+            gsap.set(fullscreenGallery, {minHeight: "100vh", maxHeight: "50vh"})
+        } 
+        else {
+            gsap.set(fullscreenGallery, {minHeight: "", maxHeight: ""})
+        }
+
     }
 
+    const MediaDisplay = ({selector}) => {
+        if (selector) {
+            return (
+                <div className={styles.gallery}>
+                    <div className={styles.galleryitem} ref={galleryItem}>
+                        <ImageGallery items={images} lazyLoad={true} showPlayButton={false} useBrowserFullscreen={false} onScreenChange={handleFullScreen} />
+                    </div>
+                </div>
+            )
+        } else {
+            if (launch.links.video_link === null || launch.links.video_link.length <= 1) {
+                return (
+                    <span>No Video Link Found!</span>
+                )
+            }
+            return (
+                <div className={styles.player}>
+                    <ReactPlayer url={launch.links.video_link} controls={true} pip={true} stopOnUnmount={false} />
+                </div>
+            )
+        }
+    }
 
     return (
         <div className={styles.modalcontainer} ref={modalContainer}>
-            <span className={styles.close} onClick={handleClose}><Image src="/cancel.svg" width="20" height="20" /></span>
-            <div className={styles.gallery}>
-                <div className={styles.galleryitem} ref={galleryItem}>
-                    <ImageGallery items={images} lazyLoad={true} showPlayButton={false} useBrowserFullscreen={false} onScreenChange={handleFullScreen} />
-                </div>
-            </div>
+            <span className={styles.close} onClick={handleClose}>
+                <Image src="/cancel.svg" width="20" height="20" />
+            </span>
+            <span className={styles.mediacontrol}>
+                <Toggle id={launch.mission_name} enabled={mediaControlToPics} onStateChange={() => setMediaControlToPics(!mediaControlToPics)} leftLabel="pics" rightLabel="video" />
+            </span>
+            <MediaDisplay selector={mediaControlToPics} />
             <div className={styles.info}>
                 <div className={styles.header}>
                     <div className={styles.patchcontainer} ref={badge}>

@@ -1,15 +1,20 @@
+import { useEffect } from 'react'
 import styles from './toggle.module.scss'
 
-const Toggle = ({enabled, onStateChange, leftLabel, rightLabel}) => {
+const Toggle = ({id, enabled, onStateChange, leftLabel, rightLabel}) => {
+
+    if (enabled === undefined) return <p>Loading</p>
+
+    useEffect(() => {
+        // console.log("Toggle toggled: ", enabled)        
+    })
     return (
-        <>
-            <label className={styles.switchlabel} htmlFor={`toggle-switch`}>
-                <input id="toggle-switch" type="checkbox" className={styles.switchcheckbox} checked={enabled} onChange={onStateChange} />
-                <span className={styles.switchbutton} />
-                <span className={styles.on}>{leftLabel}</span>
-                <span className={styles.off}>{rightLabel}</span>
-            </label>
-        </>
+        <label className={styles.switchlabel} htmlFor={id}>
+            <input id={id} type="checkbox" className={styles.switchcheckbox} checked={enabled} onChange={onStateChange} />
+            <span className={styles.switchbutton} />
+            <span className={styles.on}>{leftLabel}</span>
+            <span className={styles.off}>{rightLabel}</span>
+        </label>
     )
 }
 

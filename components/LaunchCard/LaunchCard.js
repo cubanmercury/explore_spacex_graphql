@@ -16,8 +16,10 @@ const LaunchCard = ({ launch, opened, setOpened }) => {
     let missionPatch;
     if (launch.links.mission_patch) {
         missionPatch = <img className={styles.patch} src={launch.links.mission_patch} width="300" height="250" />
+    } else if (modal) {
+        missionPatch = <img className={styles.patch} src="/image.svg" width="150" height="150" />
     } else {
-        missionPatch = <span className={styles.nopatch}>No Mission Patch Found</span>
+        missionPatch = <div className={styles.nopatchcontainer}><img className={styles.patch} src="/image.svg" width="150" height="150" /> <span className={styles.nopatch}>No Mission Patch Found</span></div>
     }
 
 
@@ -27,7 +29,6 @@ const LaunchCard = ({ launch, opened, setOpened }) => {
 
         if (opened.id === launch.id && modal === false) {
             setModal(true)
-            // gsap.to(badge.current, {x: -modalWidth*1.2, y: modalHeight*1.2, height: "45%", duration: 1.25})
         }
     })
     
@@ -77,7 +78,7 @@ const LaunchCard = ({ launch, opened, setOpened }) => {
       <>
         <li key={launch.id} id={launch.id} className={styles.launchCard + ` stackin`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick}>
           <div className={styles.cardcontent} ref={card}>
-            <div className={`${styles.patchcontainer}`} ref={badge}>
+            <div className={styles.patchcontainer} ref={badge}>
                 {missionPatch}
             </div>
             <h3 className={styles.launchNameTitle}>{launch.mission_name}</h3>

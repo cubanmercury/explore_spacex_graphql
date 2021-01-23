@@ -4,7 +4,6 @@ import LaunchCard from "../LaunchCard/LaunchCard";
 import styles from "./recentlaunches.module.scss";
 import { gsap } from "gsap";
 import { useEffect, useState } from "react";
-import Modal from '../LaunchCard/Modal/Modal';
 
 const Launches = () => {
   const [opened, setOpened] = useState({})
