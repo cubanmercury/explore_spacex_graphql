@@ -1,14 +1,15 @@
 import Head from 'next/head';
+import DroneShips from '../components/DroneShips'
 
-const DroneShips = () => {
+const DroneShipsPage = () => {
     return (
         <div>
             <Head>
                 <title>Drone Ships</title>
             </Head>
-            <p>Drone Ships</p>
+            <DroneShips />
         </div>
     )
 }
 
-export default DroneShips;
+export default DroneShipsPage;

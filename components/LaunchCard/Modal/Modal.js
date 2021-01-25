@@ -66,7 +66,6 @@ const Modal = ({missionPatch, launch, setModal, close, modal, modalWidth, modalH
         else {
             gsap.set(fullscreenGallery, {minHeight: "", maxHeight: ""})
         }
-
     }
 
     const MediaDisplay = ({selector}) => {
