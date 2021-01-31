@@ -1,9 +1,10 @@
-import { useQuery } from "@apollo/react-hooks";
-import LAUNCHES_QUERY from "../../graphql/recentLaunches.query";
-import LaunchCard from "../LaunchCard/LaunchCard";
-import styles from "./recentlaunches.module.scss";
-import { gsap } from "gsap";
-import { useEffect, useState } from "react";
+import { useQuery } from "@apollo/react-hooks"
+import LAUNCHES_QUERY from "../../graphql/recentLaunches.query"
+import LaunchCard from "../LaunchCard/LaunchCard"
+import PageTitle from "../PageTitle"
+import styles from "./recentlaunches.module.scss"
+import { gsap } from "gsap"
+import { useEffect, useState } from "react"
 
 const Launches = () => {
   const [opened, setOpened] = useState({})
@@ -18,7 +19,7 @@ const Launches = () => {
         { opacity: 1, x: 0, duration: 0.5, stagger: 0.2}
       );
     }
-  }, [loadedCards]);
+  }, [loadedCards])
 
   const { data, loading, error } = useQuery(LAUNCHES_QUERY);
 
@@ -63,7 +64,7 @@ const Launches = () => {
 
   return (
     <div>
-      <p className={styles.launchListTitle}>Recent launches</p>
+      <PageTitle title="Recent Launches" />
       <RenderCards data={data} loadedCards={loadedCards} />
     </div>
   );

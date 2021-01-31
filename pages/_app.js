@@ -1,9 +1,9 @@
-import React from 'react';
-import App from '../components/App';
-import { ApolloProvider } from '@apollo/react-hooks';
-import { useApollo } from '../lib/apolloClient'
+import React from "react"
+import App from "../components/App"
+import { ApolloProvider } from "@apollo/react-hooks"
+import { useApollo } from "../lib/apolloClient"
 
-import '../styles/globals.css'
+import "../styles/globals.css"
 
 function MyApp({ Component, pageProps, apollo }) {
   const apolloClient = useApollo(pageProps.initialApolloState)
@@ -17,4 +17,4 @@ function MyApp({ Component, pageProps, apollo }) {
   )
 }
 
-export default MyApp;
+export default MyApp

@@ -1,0 +1,65 @@
+.droneship {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  position: relative;
+  li {
+    list-style: none;
+  }
+
+  .title {
+    width: 100%;
+    max-width: 1400px;    
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .activebadge {
+      position: fixed;
+      right: 10%;
+    }
+  }
+  .content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    .imagecontainer {
+      max-height: 50vh;
+      .image {
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
+      }
+    }
+    .info {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-evenly;
+      flex-grow: 1;
+      width: 100%;
+      max-width: 1400px;
+      padding: 2rem;
+      .block {
+        width: 50%;
+        flex-grow: 1;
+        text-align: center;
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        
+        .bites {
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: flex-start;
+          width: 80%;
+        }
+        .missions {
+          width: 80%;
+        }
+      }
+    }
+  }
+}

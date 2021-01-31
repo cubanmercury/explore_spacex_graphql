@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/react-hooks';
 import MISSIONS_QUERY from '../../graphql/missions.query';
 import styles from './missions.module.scss';
+import PageTitle from "../PageTitle"
 
 const RecentMissions = () => {
     const { data, loading, error } = useQuery(MISSIONS_QUERY);
@@ -17,12 +18,11 @@ const RecentMissions = () => {
 
     return (
         <div>
-            <p className={styles.missionstitle}>Recent Missions</p>
+            <PageTitle title="Recent Missions" />
             <ul className={styles.launchList}>
                 {data.missions.map(mission => {
                     return (
                         <li key={mission.id} className={styles.missioncard + ` stackin`}>
-                            {/* <LaunchCard launch={launch} /> */}
                             {mission.name}
                         </li>
                     );

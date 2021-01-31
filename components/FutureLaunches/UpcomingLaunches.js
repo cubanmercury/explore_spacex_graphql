@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import FUTURE_LAUNCHES_QUERY from "../../graphql/futureLaunches.query";
 import LaunchCard from "../LaunchCard/LaunchCard";
+import PageTitle from "../PageTitle"
 import styles from "./futurelaunches.module.scss";
 import { gsap } from "gsap";
 
@@ -25,7 +26,7 @@ const UpcomingLaunches = () => {
   if (loading) {
     return (
       <div>
-        <p className={styles.launchListTitle}>Upcoming launches</p>
+        <PageTitle title="Upcoming Launches" />
       </div>
     );
   }
@@ -33,7 +34,7 @@ const UpcomingLaunches = () => {
     console.log("useQuery error in FUTURE_LAUNCHES_QUERY");
     return (
       <div>
-        <p className={styles.launchListTitle}>Upcoming launches</p>
+        <PageTitle title="Upcoming Launches" />
         <p>Error: {JSON.stringify(error)}</p>
       </div>
     );
@@ -63,7 +64,7 @@ const UpcomingLaunches = () => {
 
   return (
     <div>
-      <p className={styles.launchListTitle}>Upcoming launches</p>
+      <PageTitle title="Upcoming Launches" />
       <RenderCards data={data} loadedCards={loadedCards} />
     </div>
   );
