@@ -1,58 +1,64 @@
-import { useEffect, useState } from "react";
-import { useQuery } from "@apollo/react-hooks";
-import FUTURE_LAUNCHES_QUERY from "../../graphql/futureLaunches.query";
-import LaunchCard from "../LaunchCard/LaunchCard";
+import { useEffect, useState } from "react"
+import { useQuery } from "@apollo/react-hooks"
+import FUTURE_LAUNCHES_QUERY from "../../graphql/futureLaunches.query"
+import LaunchCard from "../LaunchCard"
 import PageTitle from "../PageTitle"
-import styles from "./futurelaunches.module.scss";
-import { gsap } from "gsap";
+import styles from "./futurelaunches.module.scss"
+import { gsap } from "gsap"
+import Error from '../Error'
 
-const UpcomingLaunches = () => {
-  const [opened, setOpened] = useState({});
-  const [loadedCards, setLoadedCards] = useState(false);
+export const UpcomingLaunches = () => {
+  const [opened, setOpened] = useState({})
+  const [loadedCards, setLoadedCards] = useState(false)
   useEffect(() => {
     if (loadedCards) {
-      let tl = gsap.timeline();
+      let tl = gsap.timeline()
       tl.fromTo(
         ".stackin",
         { opacity: 0, x: -25 },
         { opacity: 1, x: 0, duration: 0.5, stagger: 0.2 }
-      );
+      )
     }
-  }, [loadedCards]);
+  }, [loadedCards])
 
-  const { data, loading, error } = useQuery(FUTURE_LAUNCHES_QUERY);
-  if (data) console.log("futureLaunchesData: ", data);
+  const { data, loading, error } = useQuery(FUTURE_LAUNCHES_QUERY)
+  if (data) console.log("futureLaunchesData: ", data)
 
   if (loading) {
     return (
       <div>
         <PageTitle title="Upcoming Launches" />
       </div>
-    );
+    )
   }
   if (error) {
-    console.log("useQuery error in FUTURE_LAUNCHES_QUERY");
+    console.log("useQuery error in FUTURE_LAUNCHES_QUERY")
     return (
       <div>
         <PageTitle title="Upcoming Launches" />
-        <p>Error: {JSON.stringify(error)}</p>
+        <Error message={JSON.stringify(error)} />
       </div>
-    );
+    )
   }
   if (data) {
-    !loadedCards ? 
-      setLoadedCards(true) : 
-      console.log("recent launch data: ", data, loadedCards)
+    !loadedCards
+      ? setLoadedCards(true)
+      : console.log("recent launch data: ", data, loadedCards)
   }
 
-  const RenderCards = ({data, loadedCards}) => {
+  const RenderCards = ({ data, loadedCards }) => {
     console.log("RenderCards: ", loadedCards)
     if (loadedCards) {
       return (
         <ul className={styles.launchList}>
           {data.launchesUpcoming.map((launch) => {
             return (
-              <LaunchCard key={launch.id} launch={launch} opened={opened} setOpened={bool => setOpened(bool)} />
+              <LaunchCard
+                key={launch.id}
+                launch={launch}
+                opened={opened}
+                setOpened={(bool) => setOpened(bool)}
+              />
             )
           })}
         </ul>
@@ -67,7 +73,5 @@ const UpcomingLaunches = () => {
       <PageTitle title="Upcoming Launches" />
       <RenderCards data={data} loadedCards={loadedCards} />
     </div>
-  );
-};
-
-export default UpcomingLaunches;
+  )
+}

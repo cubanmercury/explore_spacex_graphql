@@ -1,2 +1,2 @@
-export * from './FutureLaunches';
-export { FutureLaunches as default } from './FutureLaunches';
+export * from './UpcomingLaunches';
+export { UpcomingLaunches as default } from './UpcomingLaunches';

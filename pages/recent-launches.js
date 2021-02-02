@@ -1,15 +1,15 @@
-import Head from 'next/head';
-import RecentLaunches from '../components/RecentLaunches/RecentLaunches';
+import Head from "next/head"
+import RecentLaunches from "../components/RecentLaunches"
 
 const FutureLaunches = () => {
-    return (
-        <div>
-            <Head>
-                <title>Recent Launches</title>
-            </Head>
-            <RecentLaunches />
-        </div>
-    )
+  return (
+    <div>
+      <Head>
+        <title>Recent Launches</title>
+      </Head>
+      <RecentLaunches />
+    </div>
+  )
 }
 
-export default FutureLaunches;
+export default FutureLaunches

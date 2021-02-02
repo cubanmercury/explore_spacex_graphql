@@ -23,9 +23,8 @@ query launchesPast {
       }
       mission_name
       ships {
-        image
+        id
         name
-        url
       }
     }
   }

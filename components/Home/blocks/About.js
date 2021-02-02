@@ -1,44 +1,40 @@
-import styles from "./about.module.scss";
-import Image from "next/image";
-import { useQuery } from "@apollo/react-hooks";
-import COMPANY_INFO from "../../../graphql/companyInfo.query";
-import { gsap } from "gsap";
+import styles from "./about.module.scss"
+import Image from "next/image"
+import { useQuery } from "@apollo/react-hooks"
+import COMPANY_INFO from "../../../graphql/companyInfo.query"
+import { gsap } from "gsap"
 
 const About = () => {
-  const { data, loading, error } = useQuery(COMPANY_INFO);
+  const { data, loading, error } = useQuery(COMPANY_INFO)
   if (loading) {
-    return <span>Loading...</span>;
+    return <span>Loading...</span>
   }
   if (error) {
-    return <span>Error Occured: {JSON.stringify(error)}</span>;
+    return <span>Error Occured: {JSON.stringify(error)}</span>
   }
 
   const handleMouseEnter = (e) => {
-    gsap.to(e.currentTarget, { width: "50%", duration: 0.2 });
-    gsap.to(e.currentTarget.firstChild, { x: "-2.7rem", duration: 0.4 });
+    gsap.to(e.currentTarget, { width: "50%", duration: 0.2 })
+    gsap.to(e.currentTarget.firstChild, { x: "-2.7rem", duration: 0.4 })
     if (e.currentTarget.className.includes("elontwitter")) {
-      gsap.fromTo(
-        e.currentTarget.lastChild,
-        { x: 0 },
-        { x: 15, duration: 0.2 }
-      );
+      gsap.fromTo(e.currentTarget.lastChild, { x: 0 }, { x: 15, duration: 0.2 })
     }
     gsap.fromTo(
       e.currentTarget.lastChild,
       { opacity: 0 },
       { opacity: 1, duration: 0.5, ease: "slow" }
-    );
-  };
+    )
+  }
 
   const handleMouseLeave = (e) => {
-    gsap.to(e.currentTarget, { width: "33%", duration: 0.2 });
-    gsap.to(e.currentTarget.firstChild, { x: 0, duration: 0.5 });
+    gsap.to(e.currentTarget, { width: "33%", duration: 0.2 })
+    gsap.to(e.currentTarget.firstChild, { x: 0, duration: 0.5 })
     gsap.fromTo(
       e.currentTarget.lastChild,
       { opacity: 1 },
       { opacity: 0, duration: 0.5 }
-    );
-  };
+    )
+  }
 
   return (
     <div className={styles.aboutcontainer}>
@@ -108,16 +104,26 @@ const About = () => {
         </div>
         <div className={styles.otherinfoblock}>
           <div className={styles.info}>
-            <div className={styles.headquarters}>
-              <span>
-                Headquarters: {data.company.headquarters.address},{" "}
+            <div className={styles.block}>
+              <div className={styles.title}>Headquarters</div>
+              <div className={styles.content}>
+                {data.company.headquarters.address},{" "}
                 {data.company.headquarters.city},{" "}
                 {data.company.headquarters.state}
-              </span>
+              </div>
             </div>
-            <span>Founded: {data.company.founded}</span>
-            <span>Valuation: ${data.company.valuation}</span>
-            <span>No. of Vehicles: {data.company.vehicles}</span>
+            <div className={styles.block}>
+              <div className={styles.title}>Founded</div>
+              <div className={styles.content}>{data.company.founded}</div>
+            </div>
+            <div className={styles.block}>
+              <div className={styles.title}>Valuation</div>
+              <div className={styles.content}>${data.company.valuation}</div>
+            </div>
+            <div className={styles.block}>
+              <div className={styles.title}>No. of Vehicles</div>{" "}
+              <div className={styles.content}>{data.company.vehicles}</div>
+            </div>
           </div>
           <div className={styles.links}>
             <div className={styles.box}>
@@ -168,7 +174,7 @@ const About = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default About;
+export default About

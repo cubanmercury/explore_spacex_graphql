@@ -1,102 +1,119 @@
 .aboutcontainer {
-    height: 80vh;
-    width: 80%;
-    max-width: 1400px;
-    margin: 0 auto;
+  height: 80vh;
+  width: 80%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+
+  .summary {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  .people {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row wrap;
     justify-content: space-evenly;
+    width: 100%;
 
-    .summary {
-        text-align: center;
-        font-size: 1.5rem;
-    }
+    .personcard {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+      width: 20%;
+      text-align: center;
 
-    .people {
+      .title {
         display: flex;
-        flex-flow: row wrap;
-        justify-content: space-evenly;
-        width: 100%;
+        flex-flow: column nowrap;
+        font-size: 1.2rem;
+      }
+    }
+  }
 
-        .personcard {
-            display: flex;
-            flex-flow: column nowrap;
-            justify-content: space-between;
-            width: 20%;
-            text-align: center;
+  .otherinfo {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    font-size: 1.3rem;
 
-            .title {
-                display: flex;
-                flex-flow: column nowrap;
-                font-size: 1rem;
-            }
+    .otherinfoblock {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+      height: 100%;
+
+      .info {
+        display: flex;
+        flex-flow: column nowrap;
+        .block {
+          margin: 5px 0;
+          .title {
+            width: 100%;
+            border-bottom: 1px solid #a7a9ac;
+          }
+          .content {
+            width: 100%;
+            padding: 5px 0 5px 15px;
+          }
         }
-    }
 
-    .otherinfo {
+      }
+
+      .links {
+        width: 100%;
         display: flex;
-        flex-flow: row wrap;
-        justify-content: space-evenly;
+        flex-flow: row nowrap;
+        justify-content: center;
         align-items: center;
-        width: 100%;
 
-        .otherinfoblock {
+        .box {
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: center;
+          align-items: center;
+          width: 75%;
+
+          .link {
+            width: 33%;
+            height: 2.1rem;
             display: flex;
-            flex-flow: column nowrap;
-            justify-content: space-between;
-            height: 60%;
-            
-            .info {
-                display: flex;
-                flex-flow: column nowrap;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+            span {
+              position: absolute;
+              opacity: 0;
+              color: #fff;
+              font-size: 0.7rem;
+              padding: 0 5px;
             }
 
-            .links {
-                width: 100%;
-                display: flex;
-                flex-flow: row nowrap;
-                justify-content: center;
-                align-items: center;
-                .box {
-                    display: flex;
-                    flex-flow: row nowrap;
-                    justify-content: center;
-                    align-items: center;
-                    width: 75%;
-
-                    .link {
-                        width: 33%;
-                        height: 2.1rem;
-                        display: flex;
-                        flex-flow: row nowrap;
-                        justify-content: center;
-                        align-items: center;
-                        position: relative;
-                        span {
-                            position: absolute;
-                            opacity: 0;
-                            color: #fff;
-                            font-size: 0.7rem;
-                            padding: 0 5px;
-                            // transition: all 1s ease;
-                        }
-                        &.twitter {
-                            background-color: #55acee;
-                            border: 1px solid #fff;
-                            border-top-left-radius: 15px;
-                        }
-                        &.elontwitter {
-                            border-top: 1px solid #fff;
-                            border-bottom: 1px solid #fff;
-                        }
-                        &.website {
-                            background-color: #005288;
-                            border: 1px solid #fff;
-                            border-bottom-right-radius: 15px;
-                        }
-                    }
-                }
+            &.twitter {
+              background-color: #55acee;
+              border: 1px solid #fff;
+              border-top-left-radius: 15px;
             }
+
+            &.elontwitter {
+              border-top: 1px solid #fff;
+              border-bottom: 1px solid #fff;
+            }
+
+            &.website {
+              background-color: #005288;
+              border: 1px solid #fff;
+              border-bottom-right-radius: 15px;
+            }
+          }
         }
+      }
     }
+  }
 }
