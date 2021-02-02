@@ -8,6 +8,7 @@
         position: relative;
         width: 100%;
         height: calc(100vh - 8vh);
+        opacity: 0;
 
         .herotext {
             position: absolute;
@@ -20,6 +21,10 @@
             left: calc(100% - 95%);
             text-align: left;
             text-shadow: 3px 4px #313335;
+
+            .herotextitem {
+                opacity: 0;
+            }
         }
 
         #chevron {

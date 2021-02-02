@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react"
-import { gsap } from 'gsap'
+import { gsap } from "gsap"
 import styles from "./dropdown.module.scss"
-import Image from 'next/image'
+import Image from "next/image"
+import Link from "next/link"
 
 export const Dropdown = ({ title, items }) => {
   const dropdown = useRef(null)
   const arrow = useRef(null)
   const [open, setOpen] = useState(false)
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     setOpen(!open)
     console.log("handleclick: ", e, dropdown, open)
   }
@@ -16,11 +17,33 @@ export const Dropdown = ({ title, items }) => {
   useEffect(() => {
     console.log("useEffect open: ", open)
     if (open) {
-      gsap.fromTo(dropdown.current, {opacity: 0, rotate: -90, transformOrigin: "50% 0%", display: "none"}, {opacity: 1, rotate: 0, transformOrigin: "50% 0%",  display: "flex", duration: 0.7})
-      gsap.fromTo(arrow.current, {rotate: 180}, {rotate: 270, duration: 0.7})
+      gsap.fromTo(
+        dropdown.current,
+        { opacity: 0, rotate: -90, transformOrigin: "50% 0%", display: "none" },
+        {
+          opacity: 1,
+          rotate: 0,
+          transformOrigin: "50% 0%",
+          display: "flex",
+          duration: 1,
+          ease: "bounce"
+        }
+      )
+      gsap.fromTo(
+        arrow.current,
+        { rotate: 180 },
+        { rotate: 270, duration: 1 }
+      )
     } else {
-      gsap.to(dropdown.current, {opacity: 0, rotate: -90, transformOrigin: "50% 0%", display: "none", duration: 0.7})
-      gsap.to(arrow.current, {rotate: 180, duration: 0.7})
+      gsap.to(dropdown.current, {
+        opacity: 0,
+        rotate: -90,
+        transformOrigin: "50% 0%",
+        display: "none",
+        duration: 0.7,
+        ease: "none"
+      })
+      gsap.to(arrow.current, { rotate: 180, duration: 1 })
     }
   }, [open])
 
@@ -34,10 +57,14 @@ export const Dropdown = ({ title, items }) => {
           <Image src="/curve-arrow.svg" width="15" height="20" />
         </div>
       </div>
-      <div className={styles.dropdown}>
-        <ul className={styles.dropdownitemslist}  ref={dropdown}>
+      <div className={styles.dropdown} ref={dropdown}>
+        <ul className={styles.dropdownitemslist} >
           {items.map((item) => (
-            <li  key={item.name}>{item.name}</li>
+            <li key={item?.name} className={styles.dropdownitem}>
+              <Link href={`/mission/${encodeURIComponent(item?.name)}`} >
+                {item?.name}
+              </Link>
+            </li>
           ))}
         </ul>
       </div>

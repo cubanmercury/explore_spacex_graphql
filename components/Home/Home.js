@@ -38,10 +38,10 @@ const Home = ({ props }) => {
     <div className={styles.home}>
       <div className={styles.herocontainer + " fadein"}>
         <span className={styles.herotext}>
-          <span className="stackin">Exploring</span>
-          <span className="stackin"> SpaceX</span>
-          <span className="stackin"> through</span>
-          <span className="stackin"> GraphQL</span>
+          <span className={`${styles.herotextitem} stackin`}>Exploring</span>
+          <span className={`${styles.herotextitem} stackin`}> SpaceX</span>
+          <span className={`${styles.herotextitem} stackin`}> through</span>
+          <span className={`${styles.herotextitem} stackin`}> GraphQL</span>
         </span>
         <Image
           className={styles.hero}

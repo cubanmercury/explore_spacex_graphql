@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import RecentMissions from '../components/Missions/RecentMissions';
+import RecentMissions from '../components/Missions';
 
-const missions = () => {
+const Missions = () => {
     return (
         <div>
             <Head>
@@ -12,4 +12,4 @@ const missions = () => {
     )
 }
 
-export default missions;
+export default Missions;

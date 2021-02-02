@@ -15,8 +15,10 @@
     justify-content: center;
     align-items: center;
     .activebadge {
-      position: fixed;
+      position: absolute;
       right: 10%;
+      display: flex;
+      flex-flow: column nowrap;
     }
   }
   .content {
@@ -24,6 +26,7 @@
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
+    width: 100%;
 
     .imagecontainer {
       max-height: 50vh;
@@ -55,9 +58,32 @@
           flex-flow: column nowrap;
           align-items: flex-start;
           width: 80%;
+          .bite {
+            width: 100%;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-bottom: 15px;
+
+            .bitetitle {
+              width: 100%;
+              font-size: 1.5rem;
+              font-weight: bold;
+              border-bottom: 1px solid #fff;
+              text-align: left;
+            }
+            .bitecontent {
+              font-size: 1.2rem;
+              line-height: 1.2rem;
+              padding: 5px 0;
+              margin: 0;
+            }
+          }
         }
         .missions {
           width: 80%;
+          font-size: 1.2rem;
         }
       }
     }
