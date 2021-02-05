@@ -1,7 +1,7 @@
-import gql from 'graphql-tag'
+import gql from "graphql-tag"
 
 const LAUNCHES_QUERY = gql`
-query launchesPast {
+  query launchesPast {
     launchesPast(limit: 10) {
       launch_date_local
       launch_site {

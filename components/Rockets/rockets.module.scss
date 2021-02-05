@@ -1,0 +1,65 @@
+.rockets {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  .rocketslist {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    height: 60vh;
+    width: 100%;
+    max-width: 1400px;
+    flex-grow: 1;
+    margin: 0 2rem;
+    padding: 0;
+
+    .rocket {
+      width: 24%;
+      max-width: 400px;
+      flex-grow: 1;
+      list-style: none;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transform: skew(-6deg);
+      margin: 0 5px;
+      cursor: pointer;
+
+      .bg {
+        position: absolute;
+        right: -20%;
+        width: 150%;
+        height: 100%;
+        z-index: 0;
+        transform: skew(6deg);
+
+        img {
+          filter: blur(2px)
+        }
+      }
+
+      .title {
+        position: relative;
+        left: 0;
+        padding: 5px 10px;
+        background-color: #005288;
+        font-size: 1.4rem;
+        height: 200px;
+        width: 100%;
+        max-width: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .titletext {
+          position: absolute;
+          transform: rotate(-90deg);
+          transform-origin: 50% 50%;
+          margin: 0;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}
