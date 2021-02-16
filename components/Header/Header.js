@@ -24,7 +24,6 @@ export const Header = () => {
   }
 
   useEffect(() => {
-    console.log("Header.js; menu, dropdownHeight: ", menu, dropdownHeight)
     setHeaderHeight(header.current.getBoundingClientRect().height)
     menu
       ? gsap.fromTo(

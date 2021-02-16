@@ -1,3 +1,5 @@
+import { useEffect, useState, useRef } from "react"
+import { useRouter } from 'next/router'
 import styles from "./rockets.module.scss"
 import PageTitle from "../PageTitle"
 import Error from "../Error"
@@ -5,8 +7,17 @@ import Image from "next/image"
 import { gsap } from "gsap"
 
 export const Rockets = ({ rocketsResult }) => {
-  console.log("rocketResults: ", rocketsResult)
+  // console.log("rockets: ", rocketsResult)
+  const [cardHeight, setCardHeight] = useState(0)
+  const info = useRef(null)
+  const Router = useRouter()
   const rockets = rocketsResult?.data
+
+  useEffect(() => {
+    setCardHeight(
+      document.querySelector(".rocketcard").getBoundingClientRect().height
+    )
+  })
 
   const BackgroundImg = ({ rocketName, className }) => {
     let imgSrc
@@ -30,22 +41,59 @@ export const Rockets = ({ rocketsResult }) => {
     return <Image src={imgSrc} layout="fill" objectFit="cover" quality={100} />
   }
 
-  const handleMouseOver = (e) => {
-    console.log("e: ", e.currentTarget.firstChild.firstChild.firstChild)
-    console.log("e2: ", e.currentTarget.querySelector('.bg').querySelector('img'))
-    gsap.to(
-      e.currentTarget.querySelector('.bg').querySelector('img'),
-      { filter: "blur(0px)", duration: 0.4 }
+  const wikiRedirect = (e, link) => {
+    Router.push(link)
+  }
+
+  const handleMouseEnter = (e) => {
+    const tl = gsap.timeline()
+    tl.to(e.currentTarget.querySelector(".bg").querySelector("img"), {
+      filter: "grayscale(0)",
+      duration: 0.4,
+    })
+    tl.to(
+      e.currentTarget,
+      {
+        width: "200%",
+        maxWidth: "1200px",
+        duration: 0.4,
+      },
+      0
     )
-    gsap.to(e.currentTarget, {width: "200%", maxWidth: "1200px", duration: 0.4})
+    tl.to(
+      e.currentTarget.querySelector(".title"),
+      {
+        height: "100%",
+        rotate: 90,
+        y: cardHeight / 2 - 15,
+        x: "175%",
+        duration: 1,
+      },
+      0.2
+    )
+    tl.to(
+      e.currentTarget.querySelector(".rocket-info"),
+      { display: "flex", opacity: 1, duration: 0.5 },
+      0.2
+    )
   }
 
   const handleMouseLeave = (e) => {
-    gsap.to(e.currentTarget.querySelector('.bg').querySelector('img'), {
-      filter: "blur(2px)",
+    gsap.to(e.currentTarget.querySelector(".bg").querySelector("img"), {
+      filter: "grayscale(1)",
       duration: 0.4,
     })
-    gsap.to(e.currentTarget, {width: "24%", maxWidth: "400px", duration: 0.4})
+    gsap.to(e.currentTarget, { width: "24%", maxWidth: "400px", duration: 0.4 })
+    gsap.to(e.currentTarget.querySelector(".title"), {
+      left: 0,
+      height: 200,
+      bottom: "inherit",
+      rotate: 0,
+      y: 0,
+      x: 0,
+      duration: 1,
+    })
+    gsap.to(e.currentTarget.querySelector(".rocket-info"), {display: 'none', opacity: 0, duration: 0.5})
   }
   return (
     <div className={styles.rockets}>
@@ -54,16 +102,47 @@ export const Rockets = ({ rocketsResult }) => {
       <ul className={styles.rocketslist}>
         {rockets?.map((rocket, index) => (
           <li
-            className={styles.rocket}
+            className={`${styles.rocket} rocketcard`}
             key={index}
-            onMouseOver={handleMouseOver}
+            onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
             <div className={`${styles.bg} bg`}>
-              <BackgroundImg rocketName={rocket.name} />
+              <BackgroundImg rocketName={rocket?.name} />
             </div>
-            <div className={styles.title}>
-              <p className={styles.titletext}>{rocket.name}</p>
+            <div className={`${styles.title} title`}>
+              <p className={styles.titletext}>{rocket?.name}</p>
+            </div>
+
+            <div className={`${styles.info} rocket-info`}>
+              <div className={styles.infotitle}>
+                <h6>{rocket?.name}</h6>
+                <p>{rocket?.description}</p>
+              </div>
+              <div className={styles.content}>
+                <div className={`${styles.col1} ${styles.col}`}>
+                  <p>First Flight: {rocket?.first_flight}</p>
+                  <p>Active: {rocket?.active ? "yes" : "no"}</p>
+                  <p>Height: {rocket?.height.meters} m</p>
+                  <p>Mass: {rocket?.mass.kg} kg</p>
+                </div>
+                <div className={`${styles.col2} ${styles.col}`}>
+                  <p className={styles.enginetitle}>Engines:</p>
+                  <p>Type: {rocket?.engines.type}</p>
+                  <p>Number: {rocket?.engines.number}</p>
+                  <p>Propellant 1: {rocket?.engines.propellant_1}</p>
+                  <p>Propellant 2: {rocket?.engines.propellant_2}</p>
+                  <p>Thrust to Weight: {rocket?.engines.thrust_to_weight}</p>
+                  <p>
+                    Thrust in a Vacuum: {rocket?.engines.thrust_vacuum.kN} kN
+                  </p>
+                </div>
+              </div>
+              <div className={styles.wiki}>
+                <button className={styles.button} onClick={(e) => wikiRedirect(e, rocket?.wikipedia)}>
+                  <span>More Info</span>
+                </button>
+              </div>
             </div>
           </li>
         ))}

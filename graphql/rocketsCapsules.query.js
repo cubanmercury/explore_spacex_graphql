@@ -38,6 +38,7 @@ const ROCKETS_CAPSULES_QUERY = gql`
           name
           kg
         }
+        wikipedia
       }
       result {
         totalCount
