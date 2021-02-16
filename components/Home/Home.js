@@ -3,7 +3,6 @@ import { useEffect } from "react"
 import styles from "./Home.module.scss"
 import { gsap } from "gsap"
 import ScrollToPlugin from "gsap/dist/ScrollToPlugin"
-// import spacevideo from '../../public/dynamic/nebula.mp4'
 
 import Roadster from "./blocks/Roadster"
 import Categories from "./blocks/Categories"

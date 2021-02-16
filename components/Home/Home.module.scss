@@ -37,8 +37,9 @@
         #chevron {
             position: absolute;
             z-index: 1;
+            width: 100px;
             top: calc(100vh - 20vh);
-            left: 50%;
+            left: calc(50% - 50px);
         }
     }
 

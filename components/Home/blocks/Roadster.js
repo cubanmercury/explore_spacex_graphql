@@ -6,8 +6,10 @@ import { useQuery } from "@apollo/react-hooks"
 import SplitText from "gsap/dist/TextPlugin"
 import { gsap } from "gsap"
 import Toggle from "../../ToggleSwitch/Toggle"
+import { useMediaQuery } from "react-responsive"
 
 const Roadster = () => {
+  const isLargeViewport = useMediaQuery({ query: "max-width: 768px" })
   const details = useRef(null)
   const roadsterImg = useRef(null)
   const findOut = useRef(null)
@@ -26,8 +28,6 @@ const Roadster = () => {
   if (error) return <span>Error: {JSON.stringify(error)}</span>
   if (loading) return <span></span>
   const video = "/dynamic/nebula.mp4"
-
-//   console.log("roadster: ", data)
 
   const handleClick = (e) => {
     e.preventDefault()
@@ -53,8 +53,8 @@ const Roadster = () => {
     )
     tl.fromTo(
       roadsterModal.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 1 },
+      { opacity: 0, display: 'none' },
+      { opacity: 1, display: 'flex', duration: 1 },
       0.75
     )
   }
@@ -63,8 +63,8 @@ const Roadster = () => {
     let tl = gsap.timeline()
     tl.fromTo(
       roadsterModal.current,
-      { opacity: 1 },
-      { opacity: 0, duration: 1 }
+      { opacity: 1, display: 'flex' },
+      { opacity: 0, display: 'none', duration: 1 }
     )
     tl.fromTo(
       findOut.current,
@@ -149,7 +149,7 @@ const Roadster = () => {
 
   return (
     <div id="roadsterbanner" className={styles.roadsterbanner} ref={banner}>
-      <video className="videoTag" autoPlay loop muted>
+      <video className="videoTag" autoPlay="autoplay" loop muted>
         <source src={video} type="video/mp4" />
       </video>
       <div className={styles.roadster} ref={roadsterImg}>
@@ -160,9 +160,12 @@ const Roadster = () => {
           quality="100"
         />
       </div>
-      <span className={styles.details} ref={details}>
-        <RoadsterDetails roadster={data.roadster} />
-      </span>
+      {isLargeViewport && (
+        <span className={styles.details} ref={details}>
+          <RoadsterDetails roadster={data.roadster} />
+        </span>
+      )}
+
       <span className={styles.roadstertitle}>
         <span ref={title}>Where is Elon's Roadster</span>
 

@@ -6,6 +6,10 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-evenly;
+  @media screen and (max-width: 768px) {
+    height: auto;
+    margin-top: 25px;
+  }
 
   .summary {
     text-align: center;
@@ -17,6 +21,7 @@
     flex-flow: row wrap;
     justify-content: space-evenly;
     width: 100%;
+    margin-bottom: 25px;
 
     .personcard {
       display: flex;
@@ -24,10 +29,13 @@
       justify-content: space-between;
       width: 20%;
       text-align: center;
+      @media screen and (max-width: 768px) {
+        width: 50%;
+      }
 
       .title {
         display: flex;
-        flex-flow: column nowrap;
+        flex-flow: column wrap;
         font-size: 1.2rem;
       }
     }

@@ -9,6 +9,9 @@
     padding-top: 2rem;
     padding-bottom: 2rem;
     margin-top: 4rem;
+    @media screen and (max-width: 768px) {
+        height: auto;
+    }
 
     .footercontainer {
         width: 70%;
@@ -16,11 +19,17 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
+        @media screen and (max-width: 768px) {
+            width: 90%;
+        }
 
         .links {
             display: flex;
             flex-flow: column nowrap;
             width: 20%;
+            @media screen and (max-width: 768px){
+                width: 60%;
+            }
 
             & a {
                 display: flex;
@@ -49,6 +58,12 @@
             flex-flow: column nowrap;
             justify-content: space-between;
             width: 35%;
+            @media screen and (max-width: 768px) {
+                width: 40%;
+                .herotext {
+                    font-size: 1.5rem !important;
+                }
+            }
             .herotext {
                 display: flex;
                 flex-flow: column nowrap;

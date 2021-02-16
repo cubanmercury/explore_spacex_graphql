@@ -33,7 +33,7 @@ const BurgerMenu = ({ menu, toggleMenu }) => {
         onClick={handleClick}
         className={styles.burgerMenu}
       >
-        <Image src="/menu.svg" width="40" height="64" />
+        <Image src="/menu.svg" width="35" height="35" />
       </a>
     </>
   )

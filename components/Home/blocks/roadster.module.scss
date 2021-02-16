@@ -48,6 +48,11 @@
         font-size: 4rem;
         text-align: left;
         max-width: 30%;
+        @media screen and (max-width: 768px) {
+            right: auto;
+            left: 15%;
+            font-size: 2.5rem;
+        }
 
         .buttoncont {
             .button {
@@ -75,6 +80,7 @@
     }
 
     .roadstermodal {
+        display: none;
         position: absolute;
         display: flex;
         flex-flow: row nowrap;
@@ -84,6 +90,9 @@
         width: 50%;
         height: 100%;
         margin-left: 10%;
+        @media screen and (max-width: 768px) {
+            width: 85%
+        }
 
         .modalcontent {
             position: relative;

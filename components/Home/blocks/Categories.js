@@ -1,15 +1,21 @@
-import Image from "next/image";
-import Link from "next/link";
-import styles from "./categories.module.scss";
-import { gsap } from "gsap";
+import Image from "next/image"
+import Link from "next/link"
+import styles from "./categories.module.scss"
+import { useMediaQuery } from "react-responsive"
+import { gsap } from "gsap"
 
 const Categories = () => {
+  const isLargeViewport = useMediaQuery({ query: "(max-width: 768px)" })
   const handleHoverOn = (e) => {
-    e.currentTarget.firstElementChild.style.display = "flex";
-  };
+    if (isLargeViewport) {
+      e.currentTarget.firstElementChild.style.display = "flex"
+    }
+  }
   const handleHoverOff = (e) => {
-    e.currentTarget.firstElementChild.style.display = "none";
-  };
+    if (isLargeViewport) {
+      e.currentTarget.firstElementChild.style.display = "none"
+    }
+  }
 
   return (
     <div id="categories" className={styles.categories}>
@@ -125,7 +131,7 @@ const Categories = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Categories;
+export default Categories

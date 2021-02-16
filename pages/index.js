@@ -12,13 +12,13 @@ export default function Home() {
 
 export const getStaticProps = async () => {
 
-  await apollo().query({
-    query: LAUNCHES_QUERY,
-  });
+  // await apollo().query({
+  //   query: LAUNCHES_QUERY,
+  // });
 
-  await apollo().query({
-    query: FUTURE_LAUNCHES_QUERY
-  });
+  // await apollo().query({
+  //   query: FUTURE_LAUNCHES_QUERY
+  // });
 
   return {
     props: {
