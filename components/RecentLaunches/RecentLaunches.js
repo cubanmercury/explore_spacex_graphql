@@ -6,50 +6,51 @@ import styles from "./recentlaunches.module.scss"
 import { gsap } from "gsap"
 import { useEffect, useState } from "react"
 
-export const Launches = () => {
+export const Launches = ({launchData}) => {
+  console.log("props: ", launchData)
   const [opened, setOpened] = useState({})
   const [loadedCards, setLoadedCards] = useState(false)
-  useEffect(() => {
-    console.log("stacking in cards: ", loadedCards)
-    if (loadedCards) {
-      let tl = gsap.timeline()
-      tl.fromTo(
-        ".stackin",
-        { opacity: 0, x: -25 },
-        { opacity: 1, x: 0, duration: 0.5, stagger: 0.2 }
-      )
-    }
-  }, [loadedCards])
+  // useEffect(() => {
+  //   // console.log("stacking in cards: ", loadedCards)
+  //   if (loadedCards) {
+  //     let tl = gsap.timeline()
+  //     tl.fromTo(
+  //       ".stackin",
+  //       { opacity: 0, x: -25 },
+  //       { opacity: 1, x: 0, duration: 0.5, stagger: 0.2 }
+  //     )
+  //   }
+  // }, [loadedCards])
 
-  const { data, loading, error } = useQuery(LAUNCHES_QUERY)
+  // const { data, loading, error } = useQuery(LAUNCHES_QUERY)
 
-  if (loading) {
-    return (
-      <div>
-        <p className={styles.launchListTitle}>Recent launches</p>
-      </div>
-    )
-  }
-  if (error) {
-    return (
-      <div>
-        <p className={styles.launchListTitle}>Recent launches</p>
-        <p>Error: {JSON.stringify(error)}</p>
-      </div>
-    )
-  }
-  if (data) {
+  // if (loading) {
+  //   return (
+  //     <div>
+  //       <p className={styles.launchListTitle}>Recent launches</p>
+  //     </div>
+  //   )
+  // }
+  // if (error) {
+  //   return (
+  //     <div>
+  //       <p className={styles.launchListTitle}>Recent launches</p>
+  //       <p>Error: {JSON.stringify(error)}</p>
+  //     </div>
+  //   )
+  // }
+  if (launchData?.launchesPast) {
     !loadedCards
       ? setLoadedCards(true)
-      : console.log("recent launch data: ", data, loadedCards)
+      : console.log("recent launch data: ", launchData, loadedCards)
   }
 
   const RenderCards = ({ data, loadedCards }) => {
-    console.log("RenderCards: ", loadedCards)
+    // console.log("RenderCards: ", loadedCards)
     if (loadedCards) {
       return (
         <ul className={styles.launchList}>
-          {data.launchesPast.map((launch) => {
+          {data.map((launch) => {
             return (
               <LaunchCard
                 key={launch.id}
@@ -62,14 +63,16 @@ export const Launches = () => {
         </ul>
       )
     } else {
-      return
+      return (
+        <span>No data found</span>
+      )
     }
   }
 
   return (
-    <div>
+    <>
       <PageTitle title="Recent Launches" />
-      <RenderCards data={data} loadedCards={loadedCards} />
-    </div>
+      <RenderCards data={launchData.launchesPast} loadedCards={loadedCards} />
+    </>
   )
 }

@@ -17,7 +17,11 @@
     cursor: pointer;
     background: #181a1b;
     z-index: 1;
+    box-sizing: content-box;
     // opacity: 0;
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
 
     .cardcontent {
         height: 100%;

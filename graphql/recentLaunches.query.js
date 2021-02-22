@@ -2,7 +2,7 @@ import gql from "graphql-tag"
 
 const LAUNCHES_QUERY = gql`
   query launchesPast {
-    launchesPast(limit: 10) {
+    launchesPast(limit: 6) {
       launch_date_local
       launch_site {
         site_name_long

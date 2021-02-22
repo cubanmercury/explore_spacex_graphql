@@ -3,6 +3,8 @@ import Image from "next/image"
 import { gsap } from "gsap"
 import { useState, useRef, useEffect } from "react"
 import Modal from "./Modal"
+import { useMediaQuery } from "react-responsive"
+import { Media, useMedia, mediaQuery } from "../../lib/media"
 
 export const LaunchCard = ({ launch, opened, setOpened }) => {
   const [modal, setModal] = useState(false)
@@ -13,7 +15,7 @@ export const LaunchCard = ({ launch, opened, setOpened }) => {
   const card = useRef(null)
   const badge = useRef(null)
 
-  console.log("launchcard.js; launch: ", launch)
+  const isDesktop = useMedia.greaterThanOrEqual('m')
 
   let missionPatch
   if (launch.links.mission_patch) {
@@ -21,15 +23,17 @@ export const LaunchCard = ({ launch, opened, setOpened }) => {
       <img
         className={styles.patch}
         src={launch.links.mission_patch}
-        width="300"
-        height="250"
+        width="150"
+        height="150"
       />
     )
-  } else if (modal) {
+  } 
+  else if (modal) {
     missionPatch = (
       <img className={styles.patch} src="/image.svg" width="150" height="150" />
     )
-  } else {
+  } 
+  else {
     missionPatch = (
       <div className={styles.nopatchcontainer}>
         <img
@@ -44,11 +48,20 @@ export const LaunchCard = ({ launch, opened, setOpened }) => {
   }
 
   useEffect(() => {
-    setModalWidth(card.current.getBoundingClientRect().width * 1.2)
-    setModalHeight(card.current.getBoundingClientRect().height * 1.2)
+    if (isDesktop) {
+      setModalWidth(card.current.getBoundingClientRect().width * 1.2)
+      setModalHeight(card.current.getBoundingClientRect().height * 1.2)  
+    } else {
+      setModalWidth(card.current.getBoundingClientRect().width)
+      setModalHeight(card.current.getBoundingClientRect().height)
+    }
+    
 
     if (opened.id === launch.id && modal === false) {
       setModal(true)
+      if (process.browser) {
+        document.getElementsByTagName('html')[0].style.overflow = 'hidden'
+      }
     }
   })
 
@@ -93,6 +106,7 @@ export const LaunchCard = ({ launch, opened, setOpened }) => {
       return (
         <Modal
           missionPatch={missionPatch}
+          isMissionPatch={launch?.links.mission_patch ? true : false}
           launch={launch}
           setModal={(bool) => setModal(bool)}
           close={handleClose}

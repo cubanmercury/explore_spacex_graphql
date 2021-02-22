@@ -19,6 +19,13 @@
       right: 10%;
       display: flex;
       flex-flow: column nowrap;
+      color: #b3ffb3;
+      @media screen and (max-width: 1000px) {
+        right: 5%
+      }
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
     }
   }
   .content {
@@ -52,6 +59,9 @@
         display: flex;
         justify-content: center;
         position: relative;
+        @media screen and (max-width: 768px) {
+          width: 100%;
+        }
         
         .bites {
           display: flex;
@@ -72,12 +82,19 @@
               font-weight: bold;
               border-bottom: 1px solid #fff;
               text-align: left;
+              @media screen and (max-width: 768px) {
+                font-size: 1.1rem;
+              }
             }
             .bitecontent {
               font-size: 1.2rem;
               line-height: 1.2rem;
               padding: 5px 0;
               margin: 0;
+              @media screen and (max-width: 768px) {
+                font-size: 1rem;
+                text-align: left;
+              }
             }
           }
         }

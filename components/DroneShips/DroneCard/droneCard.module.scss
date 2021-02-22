@@ -9,6 +9,9 @@
     transform: skew(-11deg);
     cursor: pointer;
     opacity: 0;
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
 
     .name {
         position: absolute;

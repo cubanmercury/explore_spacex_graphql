@@ -9,7 +9,7 @@ import Toggle from "../../ToggleSwitch/Toggle"
 import { useMediaQuery } from "react-responsive"
 
 const Roadster = () => {
-  const isLargeViewport = useMediaQuery({ query: "max-width: 768px" })
+  const isLargeViewport = useMediaQuery({ query: "(min-width: 768px)" })
   const details = useRef(null)
   const roadsterImg = useRef(null)
   const findOut = useRef(null)
@@ -53,8 +53,8 @@ const Roadster = () => {
     )
     tl.fromTo(
       roadsterModal.current,
-      { opacity: 0, display: 'none' },
-      { opacity: 1, display: 'flex', duration: 1 },
+      { opacity: 0, display: "none" },
+      { opacity: 1, display: "flex", duration: 1 },
       0.75
     )
   }
@@ -63,8 +63,8 @@ const Roadster = () => {
     let tl = gsap.timeline()
     tl.fromTo(
       roadsterModal.current,
-      { opacity: 1, display: 'flex' },
-      { opacity: 0, display: 'none', duration: 1 }
+      { opacity: 1, display: "flex" },
+      { opacity: 0, display: "none", duration: 1 }
     )
     tl.fromTo(
       findOut.current,
@@ -113,17 +113,35 @@ const Roadster = () => {
       if (metric === true) {
         return (
           <>
-            <span>Distance from Earth: {roadster.earth_distance_km}km</span>
-            <span>Distance from Mars: {roadster.mars_distance_km}km</span>
-            <span>Current Speed: {roadster.speed_kph}kph</span>
+            <div className={styles.bite}>
+              <div className={styles.key}>Distance from Earth</div>
+              <div className={styles.value}>{roadster.earth_distance_km}km</div>
+            </div>
+            <div className={styles.bite}>
+              <div className={styles.key}>Distance from Mars</div>
+              <div className={styles.value}>{roadster.mars_distance_km}km</div>
+            </div>
+            <div className={styles.bite}>
+              <div className={styles.key}>Current Speed</div>
+              <div className={styles.value}>{roadster.speed_kph}kph</div>
+            </div>
           </>
         )
       } else {
         return (
           <>
-            <span>Distance from Earth: {roadster.earth_distance_mi} miles</span>
-            <span>Distance from Mars: {roadster.mars_distance_mi} miles</span>
-            <span>Current Speed: {roadster.speed_mph}mph</span>
+            <div className={styles.bite}>
+              <div className={styles.key}>Distance from Earth</div>
+              <div className={styles.value}>{roadster.earth_distance_mi} miles</div>
+            </div>
+            <div className={styles.bite}>
+              <div className={styles.key}>Distance from Mars</div>
+              <div className={styles.value}>{roadster.mars_distance_mi} miles</div>
+            </div>
+            <div className={styles.bite}>
+              <div className={styles.key}>Current Speed</div>
+              <div className={styles.value}>{roadster.speed_mph}mph</div>
+            </div>
           </>
         )
       }
@@ -134,11 +152,14 @@ const Roadster = () => {
           <Image src="/cancel.svg" width="20" height="20" />
         </span>
         <div className={styles.stats}>
-          <span>Days since Launch: {roadster.period_days}</span>
+          <div className={styles.bite}>
+            <div className={styles.key}>Days since Launch</div>
+            <div className={styles.value}>{roadster.period_days}</div>
+          </div>
           <RenderUnits />
-          <span>
-            <a href={roadster.wikipedia}>Read more</a>
-          </span>
+          <div className={styles.wiki}>
+            <a href={roadster.wikipedia} className={styles.wikilink}>Read more</a>
+          </div>
         </div>
         <span className={styles.toggle}>
           <ToggleUnits />

@@ -9,113 +9,185 @@
     padding: 2rem;
     margin-top: 12px;
     max-height: 63vh;
+    box-sizing: content-box;
+    @media screen and (max-width: 700px) {
+        max-height: 100vh;
+    }
 
-    .info {
+    .modalcontentcontainer {
+        width: 100%;
         display: flex;
-        height: 100%;
-        width: 45%;
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: flex-start;
-        padding-left: 1.2rem;
+        justify-content: flex-start;
 
-        .header {
+        .info {
             display: flex;
-            justify-content: flex-start;
-            width: 100%;
-            .patchcontainer {
-                
-                img {
-                    width: 100%;
-                    max-width: 200px;
-                    height: auto;
-                }
-            }
-            .title {
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                flex-grow: 1;
-                font-size: 1.5rem;
-            }
-        }
-
-        .modalcontent {
-            width: 100%;
-            flex-grow: 1;
-            margin-left: auto;
+            height: 100%;
+            width: 45%;
             display: flex;
             flex-flow: column nowrap;
-            justify-content: flex-start;
-            position: relative;
-            padding-left: 1rem;
-            padding-top: 1rem;
-    
-            .launchNameTitle {
-                text-align: center;
-                text-decoration: underline;
+            align-items: flex-start;
+            padding-left: 1.2rem;
+
+            @media screen and (max-width: 700px) {
+                order: 1;
+                width: 100%;
             }
-    
-            .info {
-                padding: 3px 0;
-                .key {
+
+            .header {
+                display: flex;
+                justify-content: flex-start;
+                width: 100%;
+                margin-top: 2.5rem;
+
+                .patchcontainer {
+                    padding-right: 25px;
+
+                    img {
+                        width: 100%;
+                        max-width: 200px;
+                        height: auto;
+                    }
+                }
+
+                .title {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    flex-grow: 1;
+                    font-size: 1.5rem;
+                }
+            }
+
+            .modalcontent {
+                width: 100%;
+                flex-grow: 1;
+                margin-left: auto;
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: space-evenly;
+                position: relative;
+                padding-left: 1rem;
+                padding-top: 1rem;
+                padding-bottom: 2rem;
+                @media screen and (max-width: 700px) {
+                    padding-left: 0;
+                }
+
+                .launchNameTitle {
+                    text-align: center;
                     text-decoration: underline;
                 }
-                a {
-                    &:hover {
-                        color: #0070f3;
+
+                .infobite {
+                    padding: 3px 0;
+                    margin: 5px 0;
+                    display: flex;
+                    flex-flow: column nowrap;
+
+                    .key {
+                        width: 100%;
+                        border-bottom: 1px solid #fff;
+                        font-size: 1.2rem;
+                    }
+                    .value {
+                        width: 100%;
+                        padding-top: 5px;
+                    }
+
+                    a {
+                        &:hover {
+                            color: #0070f3;
+                        }
+                    }
+                }
+
+                .ships {
+                    display: flex;
+                    flex-flow: column nowrap;
+                    justify-content: center;
+                    align-items: flex-start;
+
+                    .ship {
+                        padding: 3px 0;
+
+                        &:hover {
+                            color: #0070f3;
+                            cursor: pointer;
+                        }
+                    }
+                }
+                .buttoncontainer {
+                    .button {
+                        cursor: pointer;
+                        background: rgba(24, 26, 27, 0.8);
+                        border: 0.5rem solid #a7a9ac;
+                        border-width: 2px;
+                        padding: 1rem 2rem;
+                        color: #a7a9ac;
+                        position: relative;
+                        transition: color .3s;
+                        color: #a7a9ac;
+        
+                        &:hover {
+                            border-color: #0070f3;
+                            color: #0070f3;
+                        }
+            
+                        span {
+                            position: relative;
+                            z-index: 2;
+                        }
                     }
                 }
             }
-    
-            .ships {
+        }
+
+        .mediablock {
+            width: 55%;
+
+            @media screen and (max-width: 700px) {
+                width: 0;
+                display: none;
+                opacity: 0;
+                order: 2
+            }
+
+            .gallery {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                max-height: 100%;
+                display: flex;
+
+                .galleryitem {
+                    width: 100%;
+                    min-height: 100%;
+                    max-height: 28rem;
+                    padding-top: 15%;
+
+                    div {
+                        max-height: inherit;
+                        box-sizing: border-box;
+                        display: block;
+                    }
+
+                    img {
+                        object-fit: contain;
+                        width: 100%;
+                        height: 100%;
+                        max-height: inherit !important;
+                    }
+                }
+            }
+
+            .player {
+                width: 100%;
+                max-width: 100%;
                 display: flex;
                 flex-flow: column nowrap;
                 justify-content: center;
-                align-items: flex-start;
-                .ship {
-                    padding: 3px 0;
-                    &:hover {
-                        color: #0070f3;
-                        cursor: pointer;
-                    }
-                }
             }
         }
-    }
-
-    .gallery {
-        width: 55%;
-        height: 100%;
-        position: relative;
-        max-height: 100%;
-        display: flex;
-
-        .galleryitem {
-            width: 100%;
-            min-height: 100%;
-            max-height: 28rem;
-            padding-top: 15%;
-
-            div {
-                max-height: inherit;
-                box-sizing: border-box;
-                display: block;
-            }
-            img {
-                object-fit: contain;
-                width: 100%;
-                height: 100%;
-                max-height: inherit !important;
-            }
-        }
-    }
-
-    .player {
-        width: 55%;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
     }
 
     .close {
@@ -126,6 +198,7 @@
         z-index: 4;
         cursor: pointer;
     }
+
     .mediacontrol {
         position: absolute;
         left: 2rem;
@@ -134,4 +207,43 @@
         z-index: 4;
         cursor: pointer;
     }
+
+    .viewswitchercontainer {
+        position: absolute;
+        display: none;
+        flex-flow: row nowrap;
+        justify-content: center;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+
+        @media screen and (max-width: 700px) {
+            display: flex;
+        }
+
+        .viewswitcher {
+            display: flex;
+            flex-flow: row nowrap;
+            width: 100%;
+
+            .option {
+                width: 50%;
+                text-align: center;
+                background-color: rgba(174, 180, 183, 0.15);
+                border-top: 1px solid #fff;
+
+                &.infoview {
+                    border-right: 1px solid rgba(255, 255, 255, 0.4);
+                    border-bottom-left-radius: 15px;
+                    background-color: rgba(174, 180, 183, 0.5);
+                }
+
+                &.mediaview {
+                    border-bottom-right-radius: 15px;
+                }
+            }
+        }
+    }
+
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react"
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router"
 import styles from "./rockets.module.scss"
 import PageTitle from "../PageTitle"
 import Error from "../Error"
@@ -93,7 +93,11 @@ export const Rockets = ({ rocketsResult }) => {
       x: 0,
       duration: 1,
     })
-    gsap.to(e.currentTarget.querySelector(".rocket-info"), {display: 'none', opacity: 0, duration: 0.5})
+    gsap.to(e.currentTarget.querySelector(".rocket-info"), {
+      display: "none",
+      opacity: 0,
+      duration: 0.5,
+    })
   }
   return (
     <div className={styles.rockets}>
@@ -121,25 +125,64 @@ export const Rockets = ({ rocketsResult }) => {
               </div>
               <div className={styles.content}>
                 <div className={`${styles.col1} ${styles.col}`}>
-                  <p>First Flight: {rocket?.first_flight}</p>
-                  <p>Active: {rocket?.active ? "yes" : "no"}</p>
-                  <p>Height: {rocket?.height.meters} m</p>
-                  <p>Mass: {rocket?.mass.kg} kg</p>
+                  <span className={styles.infocontainer}>
+                    <p className={styles.key}>First Flight:</p>
+                    <p className={styles.value}>{rocket?.first_flight}</p>
+                  </span>
+                  <span className={styles.infocontainer}>
+                    <p className={styles.key}>Active:</p>
+                    <p className={styles.value}>{rocket?.active ? "yes" : "no"}</p>
+                  </span>
+                  <span className={styles.infocontainer}>
+                    <p className={styles.key}>Height:</p>
+                    <p className={styles.value}>{rocket?.height.meters} m</p>
+                  </span>
+                  <span className={styles.infocontainer}>
+                    <p className={styles.key}>Mass:</p>
+                    <p className={styles.value}>{rocket?.mass.kg} kg</p>
+                  </span>
                 </div>
                 <div className={`${styles.col2} ${styles.col}`}>
                   <p className={styles.enginetitle}>Engines:</p>
-                  <p>Type: {rocket?.engines.type}</p>
-                  <p>Number: {rocket?.engines.number}</p>
-                  <p>Propellant 1: {rocket?.engines.propellant_1}</p>
-                  <p>Propellant 2: {rocket?.engines.propellant_2}</p>
-                  <p>Thrust to Weight: {rocket?.engines.thrust_to_weight}</p>
-                  <p>
-                    Thrust in a Vacuum: {rocket?.engines.thrust_vacuum.kN} kN
-                  </p>
+                  <span className={styles.infocontainer}>
+                    <p className={styles.key}>Type:</p>
+                    <p className={styles.value}>{rocket?.engines.type}</p>
+                  </span>
+                  <span className={styles.infocontainer}>
+                    <p className={styles.key}>Number:</p>
+                    <p className={styles.value}>{rocket?.engines.number}</p>
+                  </span>
+                  <span className={styles.infocontainer}>
+                    <p className={styles.key}>Propellant 1:</p>
+                    <p className={styles.value}>
+                      {rocket?.engines.propellant_1}
+                    </p>
+                  </span>
+                  <span className={styles.infocontainer}>
+                    <p className={styles.key}>Propellant 2:</p>
+                    <p className={styles.value}>
+                      {rocket?.engines.propellant_2}
+                    </p>
+                  </span>
+                  <span className={styles.infocontainer}>
+                    <p className={styles.key}>Thrust to Weight:</p>
+                    <p className={styles.value}>
+                      {rocket?.engines.thrust_to_weight}
+                    </p>
+                  </span>
+                  <span className={styles.infocontainer}>
+                    <p className={styles.key}>Thrust in a Vacuum:</p>
+                    <p className={styles.value}>
+                      {rocket?.engines.thrust_vacuum.kN} kN
+                    </p>
+                  </span>
                 </div>
               </div>
               <div className={styles.wiki}>
-                <button className={styles.button} onClick={(e) => wikiRedirect(e, rocket?.wikipedia)}>
+                <button
+                  className={styles.button}
+                  onClick={(e) => wikiRedirect(e, rocket?.wikipedia)}
+                >
                   <span>More Info</span>
                 </button>
               </div>
