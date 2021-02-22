@@ -39,7 +39,7 @@ export const Modal = ({
 
   const handleClose = (e) => {
     if (process.browser) {
-      document.getElementsByTagName('html')[0].style.overflow = 'auto'
+      document.getElementsByTagName("html")[0].style.overflow = "auto"
     }
     const tl = gsap.timeline()
     if (isDesktop) {
@@ -62,7 +62,7 @@ export const Modal = ({
       tl.fromTo(
         modalContainer.current,
         {
-          width: modalWidth,
+          width: "calc(100% - 12px)",
           height: modalHeight,
           opacity: 1,
         },
@@ -89,7 +89,7 @@ export const Modal = ({
       if (view === "info") {
         gsap.to(e.currentTarget.nextElementSibling, {
           backgroundColor: "rgba(174, 180, 183, 0.15)",
-          duration: 0.4
+          duration: 0.4,
         })
         gsap.to(
           mediaBlock.current,
@@ -104,7 +104,7 @@ export const Modal = ({
       } else if (view === "media") {
         gsap.to(e.currentTarget.previousElementSibling, {
           backgroundColor: "rgba(174, 180, 183, 0.15)",
-          duration: 0.4
+          duration: 0.4,
         })
         gsap.to(
           infoBlock.current,
@@ -157,7 +157,7 @@ export const Modal = ({
             position: "relative",
           },
           {
-            width: modalWidth,
+            width: "calc(100% - 12px)",
             height: "68vh",
             opacity: 1,
             position: "fixed",
@@ -182,7 +182,6 @@ export const Modal = ({
     if (launch.links.flickr_images.length <= 0) {
       const obj = {
         original: "/image.svg",
-        thumbnail: "/image.svg",
       }
       images.push(obj)
     } else {
@@ -214,13 +213,26 @@ export const Modal = ({
       return (
         <div className={styles.gallery}>
           <div className={styles.galleryitem} ref={galleryItem}>
-            <ImageGallery
-              items={images}
-              lazyLoad={true}
-              showPlayButton={false}
-              useBrowserFullscreen={false}
-              onScreenChange={handleFullScreen}
-            />
+            {launch.links.flickr_images.length <= 0 && (
+              <ImageGallery
+                items={images}
+                lazyLoad={true}
+                showPlayButton={false}
+                useBrowserFullscreen={false}
+                showThumbnails={false}
+                showFullscreenButton={false}
+                
+              />
+            )}
+            {launch.links.flickr_images.length > 0 && (
+              <ImageGallery
+                items={images}
+                lazyLoad={true}
+                showPlayButton={false}
+                useBrowserFullscreen={false}
+                onScreenChange={handleFullScreen}
+              />
+            )}
           </div>
         </div>
       )

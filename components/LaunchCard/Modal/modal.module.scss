@@ -7,9 +7,8 @@
     border: 1px solid #fff;
     border-radius: 15px;
     padding: 2rem;
-    margin-top: 12px;
     max-height: 63vh;
-    box-sizing: content-box;
+    box-sizing: border-box;
     @media screen and (max-width: 700px) {
         max-height: 100vh;
     }
@@ -41,10 +40,11 @@
 
                 .patchcontainer {
                     padding-right: 25px;
+                    margin-top: -50px;
 
                     img {
                         width: 100%;
-                        max-width: 200px;
+                        max-width: 130px;
                         height: auto;
                     }
                 }
@@ -144,6 +144,9 @@
 
         .mediablock {
             width: 55%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             @media screen and (max-width: 700px) {
                 width: 0;
@@ -186,6 +189,7 @@
                 display: flex;
                 flex-flow: column nowrap;
                 justify-content: center;
+                align-items: center;
             }
         }
     }

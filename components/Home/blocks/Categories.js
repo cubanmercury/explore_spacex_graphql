@@ -1,11 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
 import styles from "./categories.module.scss"
-import { useMediaQuery } from "react-responsive"
-import { gsap } from "gsap"
+import { useMedia } from "../../../lib/media"
 
 const Categories = () => {
-  const isLargeViewport = useMediaQuery({ query: "(max-width: 768px)" })
+  const isLargeViewport = useMedia.greaterThanOrEqual('m')
   const handleHoverOn = (e) => {
     if (isLargeViewport) {
       e.currentTarget.firstElementChild.style.display = "flex"

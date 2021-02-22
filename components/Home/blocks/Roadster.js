@@ -6,10 +6,10 @@ import { useQuery } from "@apollo/react-hooks"
 import SplitText from "gsap/dist/TextPlugin"
 import { gsap } from "gsap"
 import Toggle from "../../ToggleSwitch/Toggle"
-import { useMediaQuery } from "react-responsive"
+import { useMedia } from "../../../lib/media"
 
 const Roadster = () => {
-  const isLargeViewport = useMediaQuery({ query: "(min-width: 768px)" })
+  const isLargeViewport = useMedia.greaterThanOrEqual('m')
   const details = useRef(null)
   const roadsterImg = useRef(null)
   const findOut = useRef(null)
@@ -173,32 +173,34 @@ const Roadster = () => {
       <video className="videoTag" autoPlay="autoplay" loop muted>
         <source src={video} type="video/mp4" />
       </video>
-      <div className={styles.roadster} ref={roadsterImg}>
-        <Image
-          src="/roadsterTransparentBackground.png"
-          width="400"
-          height="142"
-          quality="100"
-        />
-      </div>
-      {isLargeViewport && (
-        <span className={styles.details} ref={details}>
-          <RoadsterDetails roadster={data.roadster} />
+      <div className={styles.roadstercontent}>
+        <div className={styles.roadster} ref={roadsterImg}>
+          <Image
+            src="/roadsterTransparentBackground.png"
+            width="400"
+            height="142"
+            quality="100"
+          />
+        </div>
+        {isLargeViewport && (
+          <span className={styles.details} ref={details}>
+            <RoadsterDetails roadster={data.roadster} />
+          </span>
+        )}
+
+        <span className={styles.roadstertitle}>
+          <span ref={title}>Where is Elon's Roadster</span>
+
+          <span className={styles.buttoncont} ref={findOut}>
+            <button className={styles.button} onClick={handleClick}>
+              <span>Find Out</span>
+            </button>
+          </span>
         </span>
-      )}
 
-      <span className={styles.roadstertitle}>
-        <span ref={title}>Where is Elon's Roadster</span>
-
-        <span className={styles.buttoncont} ref={findOut}>
-          <button className={styles.button} onClick={handleClick}>
-            <span>Find Out</span>
-          </button>
-        </span>
-      </span>
-
-      <div className={styles.roadstermodal} ref={roadsterModal}>
-        <RoadsterModal roadster={data.roadster} handleClose={handleClose} />
+        <div className={styles.roadstermodal} ref={roadsterModal}>
+          <RoadsterModal roadster={data.roadster} handleClose={handleClose} />
+        </div>
       </div>
     </div>
   )

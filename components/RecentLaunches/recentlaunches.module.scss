@@ -1,8 +1,14 @@
-.launchList {
-    position: relative;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
+.recentlaunches {
+    width: 100%;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    .launchList {
+        position: relative;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+    }
 }

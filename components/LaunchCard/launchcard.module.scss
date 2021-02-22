@@ -12,12 +12,12 @@
     align-items: center;
     width: 28%;
     padding: 25px;
-    margin: 12px;
+    margin: 6px;
     color: #a7a9ac;
     cursor: pointer;
     background: #181a1b;
     z-index: 1;
-    box-sizing: content-box;
+    box-sizing: border-box;
     // opacity: 0;
     @media screen and (max-width: 768px) {
         width: 100%;

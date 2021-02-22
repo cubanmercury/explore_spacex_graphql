@@ -3,7 +3,6 @@ import Image from "next/image"
 import { gsap } from "gsap"
 import { useState, useRef, useEffect } from "react"
 import Modal from "./Modal"
-import { useMediaQuery } from "react-responsive"
 import { Media, useMedia, mediaQuery } from "../../lib/media"
 
 export const LaunchCard = ({ launch, opened, setOpened }) => {

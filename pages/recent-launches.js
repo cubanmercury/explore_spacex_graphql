@@ -14,7 +14,7 @@ const FutureLaunches = (props) => {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { data } = await apollo().query({
     query: LAUNCHES_QUERY
   })
