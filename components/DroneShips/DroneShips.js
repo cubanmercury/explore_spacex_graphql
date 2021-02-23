@@ -5,8 +5,6 @@ import { gsap } from "gsap"
 import { useEffect, useState } from "react"
 
 export const DroneShips = ({ droneData }) => {
-  console.log("droneData: ", droneData)
-
   useEffect(() => {
     let tl = gsap.timeline()
     tl.fromTo(

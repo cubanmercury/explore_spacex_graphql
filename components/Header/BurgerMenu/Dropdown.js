@@ -43,7 +43,6 @@ const Dropdown = ({
   const handleClick = (e) => {
     e.preventDefault()
     changeOpenState(false)
-    console.log("router: ", e, e.target.id)
     router.push("/" + e.target.id)
   }
 

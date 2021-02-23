@@ -84,7 +84,6 @@ export const LaunchCard = ({ launch, opened, setOpened }) => {
   }
 
   const handleClick = (e) => {
-    console.log("clicked: ", e.currentTarget, opened, cardWidth, cardHeight)
     if (e.currentTarget.id !== opened.opened) {
       handleMouseLeave(e)
       setOpened({ id: e.currentTarget.id })
@@ -96,7 +95,6 @@ export const LaunchCard = ({ launch, opened, setOpened }) => {
   }
 
   const handleClose = (e) => {
-    console.log("handleClose: ", e.currentTarget, cardHeight, cardWidth)
     setOpened({})
   }
 

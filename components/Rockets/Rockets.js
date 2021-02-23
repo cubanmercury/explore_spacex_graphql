@@ -7,7 +7,6 @@ import Image from "next/image"
 import { gsap } from "gsap"
 
 export const Rockets = ({ rocketsResult }) => {
-  // console.log("rockets: ", rocketsResult)
   const [cardHeight, setCardHeight] = useState(0)
   const info = useRef(null)
   const Router = useRouter()

@@ -3,7 +3,6 @@ import { gsap } from "gsap"
 import { useRouter } from "next/router"
 
 const DroneCard = ({ drone }) => {
-  // console.log("drone in droneCard.js: ", drone);
   const router = useRouter()
 
   const handleMouseEnter = (e) => {

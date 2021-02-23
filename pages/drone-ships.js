@@ -14,7 +14,7 @@ const DroneShipsPage = (props) => {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { data } = await apollo().query({
     query: DRONE_SHIPS_QUERY,
   })

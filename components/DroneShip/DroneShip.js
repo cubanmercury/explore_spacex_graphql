@@ -4,8 +4,6 @@ import Dropdown from "../Dropdown"
 import Image from "next/image"
 
 export const DroneShip = ({ ship }) => {
-  console.log("DroneShip component: ", ship)
-
   const successRate =
     (ship?.successful_landings / ship?.attempted_landings) * 100
 

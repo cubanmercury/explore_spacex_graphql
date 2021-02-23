@@ -9,7 +9,6 @@ const DroneShipDetails = (props) => {
 
   const shipsArray = props.data?.shipsResult.data
   const ship = shipsArray.find(el => el.id === did)
-  console.log("shipsArray, ship: ", shipsArray, ship)
 
   return (
     <DroneShip ship={ship} />

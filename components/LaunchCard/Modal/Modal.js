@@ -47,7 +47,7 @@ export const Modal = ({
         modalContainer.current,
         {
           width: modalWidth * 3,
-          height: modalHeight * 2,
+          height: modalHeight * 3,
           opacity: 1,
         },
         {
@@ -77,7 +77,6 @@ export const Modal = ({
     }
   }
   const viewSwitcherToggle = (e, view) => {
-    console.log("viewSwitcher view: ", e.currentTarget, view)
     if (view === viewSwitcherCurrent) return
     else {
       const tl = gsap.timeline()
@@ -117,7 +116,7 @@ export const Modal = ({
           0.2
         )
       } else {
-        console.log("view doesn't meet values set in Modal.js: ", view)
+        console.error("view doesn't meet values set in Modal.js: ", view)
       }
       setViewSwitcherCurrent(view)
     }
@@ -141,7 +140,7 @@ export const Modal = ({
           },
           {
             width: modalWidth * 3,
-            height: modalHeight * 2,
+            height: modalHeight * 3,
             opacity: 1,
             position: "fixed",
             duration: 0.5,

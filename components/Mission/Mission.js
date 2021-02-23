@@ -3,8 +3,6 @@ import PageTitle from '../PageTitle'
 import Error from '../Error'
 
 export const Mission = ({mission, gotInfo}) => {
-  console.log("Mission component: ", mission, gotInfo)
-
   if (!gotInfo) {
     return (
       <>

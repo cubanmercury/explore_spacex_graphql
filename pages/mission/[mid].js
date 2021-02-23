@@ -14,8 +14,6 @@ const MissionDetails = (props) => {
     gotInfo = false
   }
 
-  console.log("missionArray, mission: ", missionsArray, mission, mid)
-
   return <Mission mission={mission} gotInfo={gotInfo} />
 }
 

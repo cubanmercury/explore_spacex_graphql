@@ -14,7 +14,7 @@ const RocketsCapsules = (props) => {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { data } = await apollo().query({
     query: ROCKETS_CAPSULES_QUERY,
   })

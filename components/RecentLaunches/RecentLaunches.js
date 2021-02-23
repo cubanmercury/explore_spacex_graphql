@@ -7,11 +7,9 @@ import { gsap } from "gsap"
 import { useEffect, useState } from "react"
 
 export const Launches = ({launchData}) => {
-  console.log("props: ", launchData)
   const [opened, setOpened] = useState({})
   const [loadedCards, setLoadedCards] = useState(false)
   useEffect(() => {
-    // console.log("stacking in cards: ", loadedCards)
     if (loadedCards) {
       let tl = gsap.timeline()
       tl.fromTo(
@@ -25,7 +23,7 @@ export const Launches = ({launchData}) => {
   if (launchData?.launchesPast) {
     !loadedCards
       ? setLoadedCards(true)
-      : console.log("recent launch data: ", launchData, loadedCards)
+      : console.error("recent launch data: ", launchData, loadedCards)
   }
 
   const RenderCards = ({ data, loadedCards }) => {

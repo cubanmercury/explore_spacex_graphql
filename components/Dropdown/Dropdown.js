@@ -11,11 +11,9 @@ export const Dropdown = ({ title, items }) => {
 
   const handleClick = (e) => {
     setOpen(!open)
-    console.log("handleclick: ", e, dropdown, open)
   }
 
   useEffect(() => {
-    console.log("useEffect open: ", open)
     if (open) {
       gsap.fromTo(
         dropdown.current,
@@ -46,8 +44,6 @@ export const Dropdown = ({ title, items }) => {
       gsap.to(arrow.current, { rotate: 180, duration: 1 })
     }
   }, [open])
-
-  console.log("dropdown items: ", items)
 
   return (
     <div className={styles.dropdowncontainer}>

@@ -1,16 +1,13 @@
-import { useQuery } from "@apollo/react-hooks"
 import MISSIONS_QUERY from "../../graphql/missions.query"
 import styles from "./missions.module.scss"
 import PageTitle from "../PageTitle"
-import Link from "next/link"
 import { gsap } from "gsap"
 import { useEffect } from "react"
 import Error from "../Error"
 import { useRouter } from "next/router"
 
-export const RecentMissions = () => {
+export const RecentMissions = ({missions}) => {
   const router = useRouter()
-  const { data, loading, error } = useQuery(MISSIONS_QUERY)
 
   useEffect(() => {
     let tl = gsap.timeline()
@@ -20,16 +17,6 @@ export const RecentMissions = () => {
       { opacity: 1, x: 0, duration: 0.5, stagger: 0.2 }
     )
   })
-
-  if (loading) {
-    return <p>Loading...</p>
-  }
-  if (error) {
-    return <Error message={JSON.stringify(error)} />
-  }
-  if (data) {
-    console.log("mission data: ", data)
-  }
 
   const handleMouseEnter = (e) => {
     gsap.fromTo(
@@ -52,8 +39,11 @@ export const RecentMissions = () => {
   return (
     <div className={styles.missionspage}>
       <PageTitle title="Recent Missions" />
+      {!missions.missions && (
+        <Error message="No Missions found!" />
+      )}
       <ul className={styles.missionslist}>
-        {data.missions.map((mission) => {
+        {missions?.missions.map((mission) => {
           return (
             <li
               key={mission.id}

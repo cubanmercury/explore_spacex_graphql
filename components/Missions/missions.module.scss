@@ -1,8 +1,12 @@
 .missionspage {
   min-height: 50vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 
   .missionslist {
     width: 100%;
+    max-width: 1400px;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;

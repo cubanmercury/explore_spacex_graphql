@@ -5,9 +5,6 @@ const Toggle = ({id, enabled, onStateChange, leftLabel, rightLabel}) => {
 
     if (enabled === undefined) return <p>Loading</p>
 
-    useEffect(() => {
-        // console.log("Toggle toggled: ", enabled)        
-    })
     return (
         <label className={styles.switchlabel} htmlFor={id}>
             <input id={id} type="checkbox" className={styles.switchcheckbox} checked={enabled} onChange={onStateChange} />
