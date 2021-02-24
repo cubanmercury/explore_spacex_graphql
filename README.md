@@ -1,16 +1,16 @@
 ## Built with Next.js & Hosted on Vercel 
-[Next.js Site](https://nextjs.org/)
+[Next.js Site](https://nextjs.org/)  
 [Site Url](https://explore-spacex-graphql.vercel.app/)
 
 ## Tools & Packages used
-[Next.js](https://nextjs.org/)
-[Apollo](https://www.apollographql.com/docs/react/)
-[GSAP](https://greensock.com/docs/v3/GSAP)
-[react-image-gallery](https://www.npmjs.com/package/react-image-gallery)
-[react-player](https://www.npmjs.com/package/react-player)
-[react-responsive](https://www.npmjs.com/package/react-responsive)
-[Styled Components](https://styled-components.com/)
-See full list in [package.json](./package.json)
+[Next.js](https://nextjs.org/)  
+[Apollo](https://www.apollographql.com/docs/react/)  
+[GSAP](https://greensock.com/docs/v3/GSAP)  
+[react-image-gallery](https://www.npmjs.com/package/react-image-gallery)  
+[react-player](https://www.npmjs.com/package/react-player)  
+[react-responsive](https://www.npmjs.com/package/react-responsive)  
+[Styled Components](https://styled-components.com/)  
+See full list in [package.json](./package.json)  
 
 ## SpaceX Graphql Explorer
 [api.spacex.land/graphql](https://api.spacex.land/graphql/)
