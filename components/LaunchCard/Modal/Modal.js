@@ -77,6 +77,12 @@ export const Modal = ({
       )
     }
   }
+  const handleDroneShipNav = (e, shipId) => {
+    if (process.browser) {
+      document.getElementsByTagName("html")[0].style.overflow = "auto"
+    }
+    Router.push(`/drone-ships/${shipId}`)
+  }
   const viewSwitcherToggle = (e, view) => {
     if (view === viewSwitcherCurrent) return
     else {
@@ -319,9 +325,12 @@ export const Modal = ({
                     {launch.ships.map((ship) => {
                       return (
                         <li key={ship.name} className={styles.ship}>
-                          <Link href={`/drone-ships/${ship.id}`}>
+                          <div
+                            href={`/drone-ships/${ship.id}`}
+                            onClick={(e) => handleDroneShipNav(e, ship.id)}
+                          >
                             {ship.name}
-                          </Link>
+                          </div>
                         </li>
                       )
                     })}
