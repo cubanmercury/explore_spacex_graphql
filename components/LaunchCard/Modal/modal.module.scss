@@ -1,8 +1,18 @@
-.modalcontainer {
+.overlay {
     display: none;
-    position: fixed;
+    justify-content: center;
+    align-items: center;
     opacity: 0;
-    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 101;
+}
+.modalcontainer {
+    position: relative;
+    z-index: 98;
     background-color: rgba(24, 26, 27, 0.99);
     border: 1px solid #fff;
     border-radius: 15px;

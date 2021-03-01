@@ -28,6 +28,7 @@ export const Modal = ({
   const galleryItem = useRef(null)
   const mediaBlock = useRef(null)
   const infoBlock = useRef(null)
+  const overlay = useRef(null)
   const images = []
   const isDesktop = useMedia.greaterThanOrEqual("m")
   const Router = useRouter()
@@ -127,7 +128,7 @@ export const Modal = ({
 
   useEffect(() => {
     if (modal === true) {
-      gsap.set(modalContainer.current, { zIndex: "98", display: "flex" })
+      gsap.set(overlay.current, { display: "flex", opacity: 1 })
       const tl = gsap.timeline()
       if (isDesktop) {
         tl.fromTo(
@@ -220,7 +221,6 @@ export const Modal = ({
                 useBrowserFullscreen={false}
                 showThumbnails={false}
                 showFullscreenButton={false}
-                
               />
             )}
             {launch.links.flickr_images.length > 0 && (
@@ -258,96 +258,106 @@ export const Modal = ({
   }
 
   return (
-    <div className={styles.modalcontainer} ref={modalContainer}>
-      <span className={styles.close} onClick={handleClose}>
-        <Image src="/cancel.svg" width="20" height="20" />
-      </span>
+    <div className={styles.overlay} onClick={handleClose} ref={overlay}>
+      <div
+        className={styles.modalcontainer}
+        ref={modalContainer}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <span className={styles.close} onClick={handleClose}>
+          <Image src="/cancel.svg" width="20" height="20" />
+        </span>
 
-      <div className={styles.modalcontentcontainer}>
-        <div className={styles.mediablock} ref={mediaBlock}>
-          <span className={styles.mediacontrol}>
-            <Toggle
-              id={launch.mission_name}
-              enabled={mediaControlToPics}
-              onStateChange={() => setMediaControlToPics(!mediaControlToPics)}
-              leftLabel="pics"
-              rightLabel="video"
-            />
-          </span>
-          <MediaDisplay selector={mediaControlToPics} />
-        </div>
+        <div className={styles.modalcontentcontainer}>
+          <div className={styles.mediablock} ref={mediaBlock}>
+            <span className={styles.mediacontrol}>
+              <Toggle
+                id={launch.mission_name}
+                enabled={mediaControlToPics}
+                onStateChange={() => setMediaControlToPics(!mediaControlToPics)}
+                leftLabel="pics"
+                rightLabel="video"
+              />
+            </span>
+            <MediaDisplay selector={mediaControlToPics} />
+          </div>
 
-        <div className={styles.info} ref={infoBlock}>
-          <div className={styles.header}>
-            {isMissionPatch && (
-              <div className={styles.patchcontainer} ref={badge}>
-                {missionPatch}
+          <div className={styles.info} ref={infoBlock}>
+            <div className={styles.header}>
+              {isMissionPatch && (
+                <div className={styles.patchcontainer} ref={badge}>
+                  {missionPatch}
+                </div>
+              )}
+              <div className={styles.title}>
+                <span className={styles.launchNameTitle}>
+                  {launch.mission_name}
+                </span>
               </div>
-            )}
-            <div className={styles.title}>
-              <span className={styles.launchNameTitle}>
-                {launch.mission_name}
+            </div>
+            <div className={styles.modalcontent}>
+              <span className={styles.infobite}>
+                <span className={styles.key}>Time Of Launch</span>
+                <span className={styles.value}>{launch.launch_date_local}</span>
               </span>
+              <span className={styles.infobite}>
+                <span className={styles.key}>Lauch Site</span>
+                <span className={styles.value}>
+                  {launch.launch_site.site_name_long}
+                </span>
+              </span>
+              <span className={styles.infobite}>
+                <span className={styles.key}>Rocket</span>
+                <span className={styles.value}>
+                  {launch.rocket.rocket_name}
+                </span>
+              </span>
+              {launch.ships.length >= 1 && (
+                <span className={`${styles.ships} ${styles.infobite}`}>
+                  <span className={styles.key}>Drone Ships Used</span>
+                  <ul className={styles.value}>
+                    {launch.ships.map((ship) => {
+                      return (
+                        <li key={ship.name} className={styles.ship}>
+                          <Link href={`/drone-ships/${ship.id}`}>
+                            {ship.name}
+                          </Link>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </span>
+              )}
+              {launch?.links.article_link && (
+                <span className={styles.buttoncontainer}>
+                  <button
+                    className={styles.button}
+                    onClick={(e) =>
+                      handleReadMore(e, launch?.links.article_link)
+                    }
+                  >
+                    <span>Read More</span>
+                  </button>
+                </span>
+              )}
             </div>
           </div>
-          <div className={styles.modalcontent}>
-            <span className={styles.infobite}>
-              <span className={styles.key}>Time Of Launch</span>
-              <span className={styles.value}>{launch.launch_date_local}</span>
-            </span>
-            <span className={styles.infobite}>
-              <span className={styles.key}>Lauch Site</span>
-              <span className={styles.value}>
-                {launch.launch_site.site_name_long}
-              </span>
-            </span>
-            <span className={styles.infobite}>
-              <span className={styles.key}>Rocket</span>
-              <span className={styles.value}>{launch.rocket.rocket_name}</span>
-            </span>
-            {launch.ships.length >= 1 && (
-              <span className={`${styles.ships} ${styles.infobite}`}>
-                <span className={styles.key}>Drone Ships Used</span>
-                <ul className={styles.value}>
-                  {launch.ships.map((ship) => {
-                    return (
-                      <li key={ship.name} className={styles.ship}>
-                        <Link href={`/drone-ships/${ship.id}`}>
-                          {ship.name}
-                        </Link>
-                      </li>
-                    )
-                  })}
-                </ul>
-              </span>
-            )}
-            {launch?.links.article_link && (
-              <span className={styles.buttoncontainer}>
-                <button
-                  className={styles.button}
-                  onClick={(e) => handleReadMore(e, launch?.links.article_link)}
-                >
-                  <span>Read More</span>
-                </button>
-              </span>
-            )}
-          </div>
         </div>
-      </div>
 
-      <div className={styles.viewswitchercontainer}>
-        <div className={styles.viewswitcher}>
-          <div
-            className={`${styles.option} ${styles.infoview}`}
-            onClick={(e) => viewSwitcherToggle(e, "info")}
-          >
-            <p>Info</p>
-          </div>
-          <div
-            className={`${styles.option} ${styles.mediaview}`}
-            onClick={(e) => viewSwitcherToggle(e, "media")}
-          >
-            <p>Media</p>
+        <div className={styles.viewswitchercontainer}>
+          <div className={styles.viewswitcher}>
+            <div
+              className={`${styles.option} ${styles.infoview}`}
+              onClick={(e) => viewSwitcherToggle(e, "info")}
+            >
+              <p>Info</p>
+            </div>
+            <div
+              className={`${styles.option} ${styles.mediaview}`}
+              onClick={(e) => viewSwitcherToggle(e, "media")}
+            >
+              <p>Media</p>
+            </div>
           </div>
         </div>
       </div>

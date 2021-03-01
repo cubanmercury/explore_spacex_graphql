@@ -14,7 +14,7 @@ export const LaunchCard = ({ launch, opened, setOpened }) => {
   const card = useRef(null)
   const badge = useRef(null)
 
-  const isDesktop = useMedia.greaterThanOrEqual('m')
+  const isDesktop = useMedia.greaterThanOrEqual("m")
 
   let missionPatch
   if (launch.links.mission_patch) {
@@ -26,13 +26,11 @@ export const LaunchCard = ({ launch, opened, setOpened }) => {
         height="150"
       />
     )
-  } 
-  else if (modal) {
+  } else if (modal) {
     missionPatch = (
       <img className={styles.patch} src="/image.svg" width="150" height="150" />
     )
-  } 
-  else {
+  } else {
     missionPatch = (
       <div className={styles.nopatchcontainer}>
         <img
@@ -49,17 +47,16 @@ export const LaunchCard = ({ launch, opened, setOpened }) => {
   useEffect(() => {
     if (isDesktop) {
       setModalWidth(card.current.getBoundingClientRect().width * 1.2)
-      setModalHeight(card.current.getBoundingClientRect().height * 1.2)  
+      setModalHeight(card.current.getBoundingClientRect().height * 1.2)
     } else {
       setModalWidth(card.current.getBoundingClientRect().width)
       setModalHeight(card.current.getBoundingClientRect().height)
     }
-    
 
     if (opened.id === launch.id && modal === false) {
       setModal(true)
       if (process.browser) {
-        document.getElementsByTagName('html')[0].style.overflow = 'hidden'
+        document.getElementsByTagName("html")[0].style.overflow = "hidden"
       }
     }
   })
