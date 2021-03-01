@@ -2,12 +2,14 @@ import gql from 'graphql-tag';
 
 const MISSIONS_QUERY = gql`
 query missions {
-  missions(limit: 100) {
+  missions(limit: 20) {
     description
     id
     manufacturers
     name
     website
+    wikipedia
+    twitter
   }
 }
 `

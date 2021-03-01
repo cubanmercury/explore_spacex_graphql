@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  .missioncontent {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    color: #fff;
+
+    .description {
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+      text-align: center;
+    }
+
+    .linkscontainer {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      width: 45%;
+      padding: 1rem 2rem;
+      border: 1px solid #fff;
+      border-radius: 15px;
+
+      .exploretitle {
+        p {
+          margin: 0;
+          font-size: 1.2rem;
+        }
+      }
+
+      .linkscontent {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        text-align: center;
+        margin-top: 1rem;
+
+        .links {
+          cursor: pointer;
+          transition: all 0.25s ease;
+
+          &:hover {
+            color: #005288;
+            transform: translateY(-5px);
+          }
+        }
+      }
+    }
+  }
+}

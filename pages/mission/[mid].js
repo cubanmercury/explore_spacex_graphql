@@ -10,7 +10,7 @@ const MissionDetails = (props) => {
   const missionsArray = props.data?.missions
   let mission = missionsArray.find((el) => el.name === mid)
   if (mission === undefined) {
-    mission = {"name": mid}
+    mission = { name: mid }
     gotInfo = false
   }
 

@@ -6,7 +6,7 @@ import styles from "./recentlaunches.module.scss"
 import { gsap } from "gsap"
 import { useEffect, useState } from "react"
 
-export const Launches = ({launchData}) => {
+export const Launches = ({ launchData }) => {
   const [opened, setOpened] = useState({})
   const [loadedCards, setLoadedCards] = useState(false)
   useEffect(() => {
@@ -20,10 +20,8 @@ export const Launches = ({launchData}) => {
     }
   }, [loadedCards])
 
-  if (launchData?.launchesPast) {
-    !loadedCards
-      ? setLoadedCards(true)
-      : console.error("recent launch data: ", launchData, loadedCards)
+  if (launchData?.launchesPast && !loadedCards) {
+    setLoadedCards(true)
   }
 
   const RenderCards = ({ data, loadedCards }) => {
@@ -43,9 +41,7 @@ export const Launches = ({launchData}) => {
         </ul>
       )
     } else {
-      return (
-        <span>No data found</span>
-      )
+      return <span>No data found</span>
     }
   }
 
